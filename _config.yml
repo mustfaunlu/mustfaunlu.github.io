@@ -1,11 +1,11 @@
-title: Just the Docs Template
-description: A starter template for a Jeykll site using the Just the Docs theme!
+title: Türkçe Android Dokümantasyonu
+description: Android Dokümantasyonu Türkçe Çeviri Projesi
 theme: just-the-docs
 
 url: https://unludev.github.io/
 
 aux_links:
-  Template Repository: https://unludev.github.io/
+
 
 plugins:
   - jekyll-default-layout
