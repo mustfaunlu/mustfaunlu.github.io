@@ -1,6 +1,6 @@
 ---
 layout: default
-title: App startup
+title: App navigation
 parent: App architecture
-nav_order: 8
+nav_order: 6
 ---
