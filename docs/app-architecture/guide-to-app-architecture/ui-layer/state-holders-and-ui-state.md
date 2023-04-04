@@ -279,7 +279,7 @@ ViewModels'in Android geliştirmedeki faydaları, onları business logice erişi
 
 <mark style="background-color: lightblue">Not: ViewModel avantajları kullanım durumunuz için geçerli değilse veya işleri farklı bir şekilde yapıyorsanız, ViewModel'in sorumluluklarını düz state holder sınıflara taşıyabilirsiniz.</mark>
 
-#### UI logic and state holder
+#### UI logic and its state holder
 
 UI logic, UI'nin kendisinin sağladığı veriler üzerinde çalışan logictir. Bu, UI elementlerinin state’inde veya permissions API'si veya Resources gibi UI data kaynaklarında olabilir. UI logicini kullanan state holderlar tipik olarak aşağıdaki özelliklere sahiptir:
 * UI state’ini üretir ve UI elementlerinin state’ini yönetir.
