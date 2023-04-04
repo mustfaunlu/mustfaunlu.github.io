@@ -5,7 +5,7 @@ grand_parent: App architecture
 nav_order: 1
 parent: Guide to app architecture
 ---
-
+## About app architecture
 Bu kılavuz, sağlam, yüksek kaliteli uygulamalar oluşturmak için best practiceleri ve önerilen mimariyi kapsar.
 
 <mark style="background-color: lightblue">Not: Bu sayfada Android Framework ile ilgili temel bilgilere sahip olduğunuz
@@ -119,7 +119,7 @@ Kullanıcı arabirimi(UI) ve veri katmanları arasındaki etkileşimleri basitle
 Tipik bir uygulama mimari diagrami bu sekilde gorunur.
 
 <mark style = "background-color: lightblue">Not:Buradaki oklar katmanlar arasi bagimliliklari gostermektedir. Mesela domain layer, data layer a bagimlidir.</mark>
-#### Modern App Architecture
+### Modern App Architecture
 Bu Modern App Architecture, diğerlerinin yanı sıra aşağıdaki tekniklerin kullanılmasını teşvik eder:
 
 * Reaktif ve katmanlı bir mimari.
@@ -131,7 +131,7 @@ Bu Modern App Architecture, diğerlerinin yanı sıra aşağıdaki tekniklerin k
 Daha fazla bilgi için aşağıdaki bölümlere, içindekiler tablosundaki diğer Architecture sayfalarına ve en önemli best practice'lerin bir özetini içeren [öneriler sayfasına](/architecture-recommendatios) bakın.
 
 
-#### UI Layer
+### UI Layer
 UI katmanının (veya presentation katmanının) rolü, uygulama verilerini ekranda görüntülemektir. Veriler, kullanıcı etkileşimi(user interaction) (bir butona basmak gibi) veya external input(network response gibi) nedeniyle değiştiğinde, UI değişiklikleri yansıtacak şekilde güncellenmelidir.
 UI katmanı iki şeyden oluşur:
 
@@ -142,7 +142,7 @@ UI katmanı iki şeyden oluşur:
 
 Bu katman hakkında daha fazla bilgi edinmek için [UI layer sayfası](/docs/app-architecture/guide-to-app-architecture/ui-layer/ui-layer)na bakın.
 
-#### Data Layer
+### Data Layer
 Bir uygulamanın veri katmanı, iş mantığını(business logic) içerir. İş mantığı, uygulamanıza değer veren şeydir; uygulamanızın verileri nasıl oluşturduğunu, depoladığını ve değiştirdiğini belirleyen kurallardan oluşur.
 Veri katmanı, her biri sıfır ila birçok veri kaynağı içerebilen repositorylerden oluşur. Uygulamanızda handle edilen her farklı veri türü için bir repository sınıfı oluşturmalısınız. Örneğin, filmlerle ilgili veriler için bir MoviesRepository sınıfı veya ödemelerle ilgili veriler için bir PaymentsRepository sınıfı oluşturabilirsiniz.
 
@@ -158,7 +158,7 @@ Repository sınıfları aşağıdaki görevlerden sorumludur:
 Her veri kaynağı sınıfı(data source class), yalnızca tek bir veri kaynağıyla çalışma sorumluluğuna sahip olmalıdır ; bu veri kaynaklari dosya, ağ kaynağı(network source) veya yerel veritabanı(local database) olabilir. Veri kaynağı sınıfları, veri işlemleri için uygulama ile sistem arasındaki köprüdür.
 Bu katman hakkında daha fazla bilgi edinmek için [data layer sayfası](/docs/app-architecture/guide-to-app-architecture/data-layer/data-layer)na bakın.
 
-#### Domain Layer
+### Domain Layer
 Domain katmanı(domain layer), kullanıcı arayüzü(UI layer) ve veri katmanları(data layer) arasında bulunan isteğe bağlı bir katmandır.
 
 Domain katmanı, karmaşık business logic'in veya birden fazla ViewModel tarafından yeniden kullanılan basit business logic'in enkapsüle edilmesinden sorumludur. Bu katman isteğe bağlıdır çünkü tüm uygulamalar bu gereksinimlere sahip olmayacaktır. Yalnızca gerektiğinde, örneğin karmaşıklığı yönetmek veya yeniden kullanılabilirliği desteklemek için kullanmalısınız.
