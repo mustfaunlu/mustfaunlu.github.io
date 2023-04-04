@@ -55,7 +55,7 @@ Bu katman tarafından açığa çıkarılan veriler immutable olmalıdır, böyl
 değerlerini tutarsız bir duruma sokma riski taşır. Immutable veriler birden fazla thread tarafından da güvenli bir
 şekilde işlenebilir. Daha fazla ayrıntı için thread bölümüne bakın.
 
-[Dependency injection best practices](https://developer.android.com/training/dependency-injection)'i takiben, repository
+[Dependency injection best practices](/docs/app-architecture/dependency-injection/about-dependency-injection)'i takiben, repository
 veri kaynaklarını constructor'ında dependency olarak alır:
 
 ```kotlin
