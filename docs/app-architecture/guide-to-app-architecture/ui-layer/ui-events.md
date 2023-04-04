@@ -6,7 +6,7 @@ nav_order: 2
 parent: Ui layer
 ---
 
-#### UI events
+## UI events
 
 UI eventleri, UI layerda UI veya ViewModel tarafından işlenmesi gereken actionlardir. En yaygın event türü, kullanıcı
 eventleridir. Kullanıcı, uygulamayla etkileşim kurarak, örneğin ekrana dokunarak veya hareketler(gesture) oluşturarak
@@ -41,14 +41,14 @@ türlerini aşağıdaki gibi tanımlar:
 
 [Architecture: Handling UI events-MAD Skills](https://youtu.be/lwGtp0Yr0PE)
 
-#### UI event decision tree
+### UI event decision tree
 
 Aşağıdaki diyagram, belirli bir event kullanım senaryosunu(use case) ele almak için en iyi yaklaşımı bulmaya yönelik bir
 karar ağacını(decision tree) göstermektedir. Bu kılavuzun geri kalanında bu yaklaşımlar ayrıntılı olarak
 açıklanmaktadır.
 ![Eventleri handle etmek için karar ağacı(event decision tree).](/assets/images/decision-tree-handling-events.png)
 
-#### Handle user events
+### Handle user events
 
 Bu eventler, bir UI elementinin state’inin (örneğin, expandable bir itemin state’i) değiştirilmesiyle ilgiliyse, UI,
 kullanıcı eventlerini doğrudan handle edebilir. Event, ekrandaki verilerin yenilenmesi gibi business logicin
@@ -111,7 +111,7 @@ fun LatestNewsScreen(viewModel: LatestNewsViewModel = viewModel()) {
 }
 ```
 
-#### User Events in RecyclerViews
+### User Events in RecyclerViews
 
 Action, bir RecyclerView iteminde veya custom bir Viewde olduğu gibi, UI ağacının daha aşağısında üretilirse, ViewModel
 yine de kullanıcı eventlerini handle eden olmalıdır.
@@ -163,12 +163,12 @@ adapteri ViewModel sınıfıyla sıkı bir şekilde birleştirir.</mark>
 actionlari) için bir callback interfaceine sahip olmasıdır. Bu durumda, activty veya fragment bindingi handle edebilir
 ve doğrudan callback interfaceinden ViewModel methodlarini çağırabilir.</mark>
 
-#### Naming conventions for user event functions
+### Naming conventions for user event functions
 
 Bu kılavuzda, kullanıcı eventlerini handle eden ViewModel fonksiyonlari, gerçekleştirdikleri eyleme göre bir fiille
 adlandırılır; örneğin: addBookmark(id) veya logIn(username, password).
 
-#### Handle ViewModel Events
+### Handle ViewModel Events
 
 ViewModel'den kaynaklanan UI actionlari(ViewModel eventleri), her zaman bir [UI state](ui-layer) güncellemesiyle
 sonuçlanmalıdır. Bu, Tek Yönlü Veri Akışı(UDF) ilkelerine uygundur. Configuration changesden sonra eventleri yeniden
@@ -253,7 +253,7 @@ fun LoginScreen(
 örnekleri [coroutinelerin ve bunların yaşam döngüsüne duyarlı bileşenlerle nasıl kullanılacağı](/docs/app-architecture/architecture-components/ui-layer-libraries/lifecycle-aware-components/use-kotlin-coroutines-with-lifecycle-aware-components)
 nın anlaşılmasını gerektirir.</mark>
 
-#### Consuming events can trigger state updates
+### Consuming events can trigger state updates
 
 UI’de belirli ViewModel eventlerinin kullanılması, diğer UI state güncellemelerine neden olabilir. Örneğin, kullanıcıya
 bir şey olduğunu bildirmek için ekranda geçici mesajlar gösterilirken, mesaj ekranda gösterildiğinde UI’in ViewModel'e
@@ -371,7 +371,7 @@ Mesaj geçici olsa da, UI state, zamanın her noktasında ekranda görüntülene
 <mark style="background-color: lightblue">Not: Ekranda gösterilecek kullanıcı mesajlarının listesini içeren daha gelişmiş bir kullanım örneği için [Jetsnack Compose](https://github.com/android/compose-samples/blob/main/Jetsnack/app/src/main/java/com/example/jetsnack/model/SnackbarManager.kt) örneğine bakın.
 </mark>
 
-#### Navigation Events
+### Navigation Events
 [Consuming events can trigger state updates](#consuming-events-can-trigger-state-updates)  bölümü, kullanıcı mesajlarını ekranda görüntülemek için UI state’ini nasıl kullandığınızı ayrıntılarıyla açıklar. Navigasyon eventleri, bir Android uygulamasında da yaygın olarak görülen bir event türüdür.
 Event, kullanıcı bir butona dokunduğu için UI’de tetiklenirse, UI, navigation controller çağırarak veya eventi çağırana uygun şekilde composable olarak göstererek bununla ilgilenir.
 
@@ -460,7 +460,7 @@ fun LoginScreen(
 ```
 Yukarıdaki örnekte, current destination olan Login backstackde tutulmayacağından uygulama beklendiği gibi çalışır. Kullanıcılar geri basarlarsa geri dönemezler. Ancak bunun olabileceği durumlarda, çözüm ek logic gerektirecektir.
 
-#### Navigation events when the destination is kept in the back stack
+### Navigation events when the destination is kept in the back stack
 
 Bir ViewModel, A ekranından B ekranına bir navigation event üreten bir state belirlediğinde ve A ekranı navigation backstack’nde tutulduğunda, otomatik olarak B'ye ilerlemeye devam etmemek için ek logice ihtiyacınız olabilir. Bunu implement etmek için, UI’in diğer ekrana gitmeyi düşünüp düşünmemesi gerektiğini gösteren ek bir state’e sahip olunması gerekir.Normalde, bu state UI’de tutulur çünkü Navigation logic, ViewModel ile değil, UI ile ilgilidir. Bunu göstermek için, aşağıdaki kullanım örneğini ele alalım.
 
@@ -564,7 +564,7 @@ fun DobValidationScreen(
 ```
 Doğum tarihi doğrulama, ViewModel'in sorumlu olduğu business logictir. ViewModel çoğu zaman bu logic’i data katmanına devreder. Kullanıcıyı bir sonraki ekrana yönlendirme mantığı, UI logictir çünkü bu gereksinimler, UI yapılandırmasına bağlı olarak değişebilir. Örneğin, aynı anda birden çok kayıt adımı gösteriyorsanız, bir tablette otomatik olarak başka bir ekrana ilerlemek istemeyebilirsiniz. Yukarıdaki koddaki validationInProgress değişkeni bu işlevi uygular ve UI’in doğum tarihi geçerli olduğunda ve kullanıcı aşağıdaki kayıt adımına devam etmek istediğinde otomatik olarak navigate edilip edilmeyeceğini belirler.
 
-#### Other Use Cases
+### Other Use Cases
 UI event usecaseinizin UI state güncellemeleriyle çözülemeyeceğini düşünüyorsanız, uygulamanızda veri akışını yeniden gözden geçirmeniz gerekebilir. Aşağıdaki ilkeleri göz önünde bulundurun:
 * Her sınıf sorumlu olduğu şeyi yapmalı, daha fazlasını değil. Kullanıcı arabirimi, navigation calls, click events ve izin istekleri alma gibi ekrana özgü davranış mantığından sorumludur. ViewModel, iş mantığını içerir ve sonuçları hiyerarşinin alt katmanlarından UI state’ine dönüştürür.
 * Eventin nereden kaynaklandığını düşünün. Bu kılavuzun başında sunulan decision tree’yi takip edin ve her sınıfın sorumlu olduğu konuyu halletmesini sağlayın. Örneğin, event kullanıcı arayüzünden geliyorsa ve bir navigate ile olayıyla sonuçlanıyorsa, o eventin kullanıcı arayüzünde handle edilmesi gerekir. Bazı logicler ViewModel'e devredilebilir, ancak eventin handle edilmesi tamamen ViewModel'e devredilemez.
@@ -575,4 +575,4 @@ UI event usecaseinizin UI state güncellemeleriyle çözülemeyeceğini düşün
 Bazı kod örnekleriyle yukarıda bahsedilen API'leri neden kullanmamanız gerektiği hakkında daha fazla bilgi edinmek için [ViewModel: One-off event antipatterns](https://medium.com/androiddevelopers/viewmodel-one-off-event-antipatterns-16a1da869b95) blog gönderisini okuyun.
 </mark>
 
-#### [Samples](https://developer.android.com/topic/architecture/ui-layer/events#samples)
+### [Samples](https://developer.android.com/topic/architecture/ui-layer/events#samples)
