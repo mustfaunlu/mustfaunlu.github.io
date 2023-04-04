@@ -6,9 +6,9 @@ nav_order: 1
 parent: Ui layer
 ---
 
-### UI Layer
+# UI Layer
 
-#### About the UI layer
+## About the UI layer
 
 Kullanıcı arayüzünün(UI) rolü, uygulama verilerini ekranda görüntülemek ve ayrıca kullanıcı etkileşiminin(user
 interaction) birincil noktası olarak hizmet etmektir. Veriler, kullanıcı etkileşimi (bir butona basmak gibi) veya harici
@@ -29,7 +29,7 @@ uygulanabilir. Ancak, bunları kılavuz olarak ele almalı ve gerektiğinde gere
 
 [Architecture: The UI Layer - MAD Skills](https://youtu.be/p9VR8KbmzEE)
 
-#### A basic case study
+### A basic case study
 
 Bir kullanıcının okuması için haber makaleleri getiren bir uygulama düşünün. Uygulama, okunabilecek makaleler sunan bir
 makaleler ekranına sahiptir ve ayrıca oturum açmış kullanıcıların gerçekten öne çıkan makalelere yer işareti koymasına
@@ -46,7 +46,7 @@ atabilmesi gerekir. Özetle, uygulama, kullanıcıların aşağıdakileri yapmas
 Aşağıdaki bölümler, bu örneği, tek yönlü veri akışı ilkelerini tanıtmak ve bu ilkelerin UI katmanı için uygulama
 mimarisi bağlamında çözmeye yardımcı olduğu sorunları göstermek için bir use case olarak kullanır.
 
-#### UI layer Architecture
+### UI layer Architecture
 
 UI terimi, bunu yapmak için hangi API'leri kullandıklarından bağımsız olarak (Views
 veya [Jetpack Compose](https://developer.android.com/jetpack/compose)) verileri görüntüleyen activity ve fragment gibi
@@ -68,7 +68,7 @@ Bu kılavuzun geri kalanı, bu adımları gerçekleştiren bir UI katmanının n
 * Observable UI state’ini tüketen UI nasıl implement edilir.
   Bunlardan en temel olanı UI state’inin tanımıdır.
 
-#### Define UI State
+### Define UI State
 
 Daha önce özetlenen [case study](#a-basic-case-study) üzerinden devam edelim. Kısacası, kullanıcı arayüzü her makale
 için bazı metadata ile birlikte bir makale listesi gösterir. Uygulamanın kullanıcıya sunduğu bu bilgiler, UI state’dir.
@@ -96,7 +96,7 @@ data class NewsItemUiState(
 )
 ```
 
-#### Immutability
+### Immutability
 
 Yukarıdaki örnekteki UI state tanımı immutabledir(degismez). Bunun en önemli faydası, immutable nesnelerin zamanın bir
 anında uygulamanın state'ine ilişkin garantiler sağlamasıdır. Bu, UI’i tek bir role odaklanmak için serbest bırakır:
@@ -112,13 +112,13 @@ class'lar bu tür antipattern'leri önlemek için çok kullanışlıdır.
 verilerin güncellenmesinden sorumlu olmalıdır.
 </mark>
 
-#### Naming conventions in this guide
+### Naming conventions in this guide
 
 Bu kılavuzda, UI state sınıfları, ekranın veya tanımladıkları ekranın bir bölümünün fonksiyonalitesine göre
 adlandırılır. Sözleşme şu şekildedir: fonksiyonalite + UiState. Örneğin, haberleri görüntüleyen bir ekranın state’i
 NewsUiState olarak adlandırılabilir ve haber öğeleri listesindeki bir haber öğesinin state’i NewsItemUiState olabilir.
 
-#### Manage State with Undirectional Data Flow
+### Manage State with Undirectional Data Flow
 
 Önceki bölüm, UI state’inin, UI'in oluşturması için gereken ayrıntıların immutable bir snapshot olduğunu belirttik.
 Ancak, uygulamalardaki verilerin dinamik doğası geregi, bu state’in zaman içinde değişebileceği anlamına gelir. Bunun
@@ -136,7 +136,7 @@ state’i çok basit olmadığı sürece, UI'nin tek sorumluluğu UI state’ini
 Bu bölümde, healthy separation of responsibility uygulanmasına yardımcı olan bir mimari model olan Tek Yönlü Veri
 Akışı (unidirectional data flow (UDF) ele alınmaktadır.
 
-#### State Holders
+### State Holders
 
 UI state’inin üretilmesinden sorumlu olan ve o görev için gerekli logici içeren sınıflara state holder denir. State
 Holderlar, yönettikleri ilgili UI elementlerinin scope una bağlı
@@ -184,7 +184,7 @@ için gereken eventlari handle etmek amaciyla gereken tüm logici tanımlamaktı
 Aşağıdaki bölümlerde, state değişikliklerine neden olan eventlere ve bunların UDF kullanılarak nasıl handle
 edilebilecegine daha yakından bakılmaktadır.
 
-#### Types of Logic
+### Types of Logic
 
 Bir makaleyi bookmarklamak, uygulamanıza değer kattığı için bir iş mantığı(business logic) örneğidir. Bununla ilgili
 daha fazla bilgi edinmek
@@ -210,7 +210,7 @@ Android SDK bağımlılıklarını alabilir; ViewModel nesnelerinin ömrü daha 
 State holderlar ve bunların UI oluşturmaya yardımcı olma bağlamına nasıl uydukları hakkında daha fazla bilgi
 için [Jetpack Compose State kılavuzu](https://developer.android.com/jetpack/compose/state#managing-state)na bakın.
 
-#### Why use UDF?
+### Why use UDF?
 
 UDF, state değişimlerinin başladığı yeri, dönüştüğü yeri ve nihai olarak tüketildiği yeri de ayırır. Bu ayrım, kullanıcı
 arayüzünün tam olarak adının ima ettiği şeyi yapmasına olanak tanır yani state değişikliklerini gözlemleyerek(observe)
@@ -223,7 +223,7 @@ Başka bir deyişle, UDF aşağıdakilere izin verir:
 * Bakım kolaylığı. State degisikligi, degisikliklerin hem kullanıcı eventlerinin hem de çektikleri veri kaynaklarının
   bir sonucu olduğu iyi tanımlanmış bir model izler.
 
-#### Expose UI State
+### Expose UI State
 
 UI state’inizi tanımlayıp, o state’in üretimini(produce) nasıl yöneteceğinizi belirledikten sonra sıra, üretilen state’i
 UI'ye sunmaktır. State’in üretimini yönetmek için UDF kullandığınız için, üretilen state’i bir stream olarak
@@ -359,7 +359,7 @@ hakkında daha fazla bilgi edinmek için [Show errors on the screen](#show-error
 <mark style = "background-color: lightblue">Not: State’in ViewModel'deki fonksiyonlar aracılığıyla değiştirildiği
 yukarıdaki örnekte gösterilen pattern, tek yönlü veri akışının(UDF) en popüler uygulamalarından biridir.</mark>
 
-#### Additional considerations
+### Additional considerations
 
 Önceki kılavuza ek olarak, UI state’ini gösterirken aşağıdakileri göz önünde bulundurun:
 
@@ -398,7 +398,7 @@ karmaşık hale geldikçe, tüm propertylerin anında kullanılabilir olduğu te
       veya  [distinctUntilChanged()](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/distinct-until-changed.html)
       gibi methodlari kullanarak hafifletmenin gerekli olabileceği anlamına gelir.
 
-#### Consume UI State
+### Consume UI State
 
 UI’deki UiState objelerinin streamini tüketmek için, kullandığınız gözlemlenebilir veri türü için terminal operatorunu
 kullanırsınız. Örneğin, LiveData için observe() methodunu, Kotlin flowlar için ise collect() methodunu veya onun
@@ -443,7 +443,7 @@ collectorleri olmadığında çalışmayı durdurmaz, ancak flowlarla çalışı
 bilmeyebilirsiniz. Yaşam döngüsüne duyarlı flow collection kullanmak, daha sonra downstream collector kodunu tekrar
 ziyaret etmeden ViewModel flowlarinda bu tür değişiklikleri yapmanızı sağlar.</mark>
 
-#### Show in-progress operations
+### Show in-progress operations
 
 Bir UiState sınıfında yükleme statelerini temsil etmenin basit bir yolu, bir boole alanı kullanmaktır:
 
@@ -495,7 +495,7 @@ fun LatestNewsScreen(
 }
 ```
 
-#### Show errors on the screen
+### Show errors on the screen
 
 UI’de hataların gösterilmesi, devam eden işlemleri göstermeye benzer çünkü her ikisi de varlıklarını veya yokluklarını
 gösteren boolean değerlerle kolayca temsil edilir. Ancak hatalar, kullanıcıya geri iletmek için ilişkili bir mesajı veya
@@ -520,7 +520,7 @@ biçiminde sunulabilir. Bu, UI eventlerinin nasıl
 üretildiği ve tüketildiği ile ilgili olduğundan, daha fazla bilgi edinmek için [UI eventleri](ui-events) sayfasına
 bakın.
 
-#### Threading and concurrency
+### Threading and concurrency
 
 Bir ViewModel'de gerçekleştirilen herhangi bir çalışma, main threadden çağrı yapmak için main-safe olmalıdır. Bunun
 nedeni, işi farklı bir threade taşımaktan data ve domain layerlarin sorumlu olmasıdır.
@@ -529,21 +529,21 @@ coroutineler, concurrent operasyonlari yönetmenin harika bir yoludur ve Jetpack
 yerleşik destek sağlar. Android uygulamalarında coroutineleri kullanma hakkında daha fazla bilgi edinmek için bkz.
 [Kotlin coroutines on Android](https://developer.android.com/kotlin/coroutines).
 
-#### Navigation
+### Navigation
 
 Uygulama navigationdaki değişiklikler genellikle event benzeri yayilmalardan(emission) kaynaklanır. Örneğin, bir
 SignInViewModel sınıfı bir oturum açma gerçekleştirdikten sonra, UiState'in isSignedIn fieldi true olarak ayarlanmış
 olabilir. Bunun gibi tetikleyiciler, consumption implementasyonunun Navigation componentini ertelemesi dışında,
 yukarıdaki Consume UI State bölümünde kapsananlar gibi tüketilmelidir.
 
-#### Paging
+### Paging
 
 Paging library, UI’de PagingData adlı bir tip ile tüketilir. PagingData, zaman içinde değişebilen öğeleri temsil
 ettiğinden ve içerdiğinden - başka bir deyişle immutable bir tip değildir - sabit bir UI state’inde temsil
 edilmemelidir. Bunun yerine, ViewModel'den bağımsız olarak kendi akışında göstermelisiniz. Bunun belirli bir örneği için
 Android Paging codelab bakın.
 
-#### Animations
+### Animations
 
 Akıcı ve sorunsuz top level navigation transitions sağlamak için, animasyona başlamadan önce ikinci ekranın veri
 yüklemesini beklemek isteyebilirsiniz. Android view framework, [postponeEnterTransition()](https://developer.android.com/reference/androidx/fragment/app/Fragment#postponeEnterTransition()) ve
