@@ -6,7 +6,7 @@ nav_order: 3
 parent: Ui layer
 ---
 
-#### State holders and UI state
+## State holders and UI state
 
 [UI layer](ui-layer) kılavuzu, UI katmanı için UI State oluşturma ve yönetme aracı olarak tek yönlü veri akışını (UDF)
 tartışır.
@@ -24,11 +24,11 @@ pipelinedir. Aşağıdakileri anlayabilmeli ve bilmelisiniz:
 
 [State holders and state production in the UI Layer](https://youtu.be/pCX9wvu-Bq0)
 
-#### Elements of the UI state production pipeline
+### Elements of the UI state production pipeline
 
 UI state ve onu üreten logic, UI katmanını tanımlar.
 
-##### UI state
+### UI state
 
 [UI state](about-the-ui-layer.md#define-ui-state), UI'yi tanımlayan propertydir. İki tür UI state vardır:
 
@@ -42,7 +42,7 @@ UI state ve onu üreten logic, UI katmanını tanımlar.
   Compose'da state composable olanın dışındadır ve hatta onu composable olanın hemen yakınından çağıran composable
   fonksiyona veya bir state holderine hoist edebilirsiniz. Bunun bir örneği, composable Scaffold için ScaffoldState'tir.
 
-#### Logic
+### Logic
 
 Uygulama verileri ve kullanıcı eventleri, UI state’inin zaman içinde değişmesine neden olduğundan, UI state statik bir
 property değildir. Logic, UI state’inin hangi bölümlerinin değiştiği, neden değiştiği ve ne zaman değişmesi gerektiği
@@ -59,7 +59,7 @@ Logic, business logic veya UI logic olabilir:
   arama çubuğu hint elde etmek, bir listede belirli bir öğeye kaydırma yapmak veya kullanıcı bir butona tıkladığında
   belirli bir ekrana navigate etme logic’i.
 
-#### Android lifecycle and the types of UI state and logic
+### Android lifecycle and the types of UI state and logic
 
 UI katmanının iki bölümü vardır: UI lifecycle’a biri bağımlı, diğeri bağımsız. Bu ayrım, her fragmentin kullanabileceği
 veri kaynaklarını belirler ve bu nedenle farklı türde UI state ve logic gerektirir.
@@ -81,7 +81,7 @@ Yukarıdakiler aşağıdaki tablo ile özetlenebilir:
 | Business logic           | UI logic               |
 | Screen UI state          |                        |
 
-#### The UI state production pipeline
+### The UI state production pipeline
 
 UI state production pipeline, UI state oluşturmak için atilan adımları ifade eder. Bu adımlar, daha önce tanımlanan
 logic türlerinin uygulanmasını içerir ve tamamen UI gereksinimlerine bağlıdır. Bazı UI'ler, pipeline’in hem UI Lifecycle
@@ -178,7 +178,7 @@ gelir. Aşağıdaki bölümler, farklı logic türlerine ve state holderlerine d
 olduğunu ele almaktadır.
 ![Application of logic in the UI layer](/assets/images/state-holders-and-ui-state-img3.png)
 
-#### State holders and their responsibilities
+### State holders and their responsibilities
 
 State holderin sorumluluğu, uygulamanın okuyabilmesi için state’i saklamaktır. Logice ihtiyaç duyulan durumlarda
 aracılık yaparak gerekli logici barındıran veri kaynaklarına erişim sağlar. Bu şekilde, state holder logici uygun veri
@@ -198,7 +198,7 @@ işleyebilmesi ve ardından gelen state değişikliğini üretebilmesi gerekir.
 <mark style = "background-color: lightblue">Not: State holderler kesinlikle gerekli değildir. Basit UI’kar, logiclerini
 presentation kodlarıyla inline olarak barındırabilir.</mark>
 
-#### Types of state holders
+### Types of state holders
 
 UI state’i ve logic’i tiplerini benzer şekilde, UI katmanında, UI yaşam döngüsüyle olan ilişkilerine göre tanımlanan iki
 tür state holder vardır:
@@ -214,7 +214,7 @@ bilgilere bağlıysa, bu bilgileri ona bir business logic state holderinden ilet
 state holderinin, UI yaşam döngüsünden bağımsız olduğu için UI logici state holderinden daha uzun ömürlü
 olmasıdır.</mark>
 
-#### Business logic and its state holder
+### Business logic and its state holder
 
 Business logic state holderlari, kullanıcı eventlerini handle eder ve verileri data veya domain katmanlarından ekran UI
 state’ine dönüştürür. Android yaşam döngüsü ve uygulama configuration changes göz önünde bulundurulduğunda optimum
@@ -267,7 +267,7 @@ AuthorViewModel'in daha önce belirtilen business logic state holder özellikler
 <mark style="background-color: red">Uyarı: ViewModel instancelarini diğer composable fonksiyonlara argüman olarak vermeyin. Bunu yapmak, composable fonksiyonu ViewModel türüyle birleştirerek daha az yeniden kullanılabilir ve test edilmesini ve önizlemesini zorlaştırır. Ayrıca, ViewModel instancesini yöneten net bir tek doğruluk kaynağı (SSOT) olmayacaktır. ViewModel'i devre dışı bırakmak, birden çok composable öğenin ViewModel fonksiyonlarini çağırmasına ve state’i değiştirmesine izin vererek hataların debugini zorlaştırır. Bunun yerine, UDF best practicelerini izleyin ve yalnızca gerekli state’i iletin. Aynı şekilde, yayılan eventleri ViewModel'in composable SSOT'sine ulaşana kadar iletin. Eventi handle eden ve karşılık gelen ViewModel methodlarini çağıran SSOT budur.
 </mark>
 
-#### The ViewModel as a business logic state holder
+### The ViewModel as a business logic state holder
 ViewModels'in Android geliştirmedeki faydaları, onları business logice erişim sağlamak ve uygulama verilerini ekranda presentation için hazırlamak için uygun hale getirir. Bu faydalar aşağıdakileri içerir:
 * ViewModels tarafından tetiklenen işlemler configuration changelerden kurtulur
 
@@ -279,7 +279,7 @@ ViewModels'in Android geliştirmedeki faydaları, onları business logice erişi
 
 <mark style="background-color: lightblue">Not: ViewModel avantajları kullanım durumunuz için geçerli değilse veya işleri farklı bir şekilde yapıyorsanız, ViewModel'in sorumluluklarını düz state holder sınıflara taşıyabilirsiniz.</mark>
 
-#### UI logic and its state holder
+### UI logic and its state holder
 
 UI logic, UI'nin kendisinin sağladığı veriler üzerinde çalışan logictir. Bu, UI elementlerinin state’inde veya permissions API'si veya Resources gibi UI data kaynaklarında olabilir. UI logicini kullanan state holderlar tipik olarak aşağıdaki özelliklere sahiptir:
 * UI state’ini üretir ve UI elementlerinin state’ini yönetir.
@@ -330,7 +330,7 @@ Yukarıdaki örnekte, NiaAppState ile ilgili aşağıdaki ayrıntılar dikkat ç
 
 <mark style="background-color: lightblue">Not: Düz state holder sınıfları, arama çubukları veya chip grupları gibi yeniden kullanılabilir kullanıcı arabirimi parçaları için önerilir. Bu durumda ViewModels'i kullanmamalısınız çünkü bunlar en iyi navigation destination için state’i yönetmek ve business logice erişim için kullanılır.</mark>
 
-#### Choose between a ViewModel and plain class for a state holder
+### Choose between a ViewModel and plain class for a state holder
 Yukarıdaki bölümlerden, bir ViewModel ve bir düz sınıf state holder arasında seçim yapmak, UI state’ine uygulanan logice ve logicin üzerinde çalıştığı veri kaynaklarına iner.
 
 <mark style="background-color: lightblue">Not: Çoğu uygulama, aksi takdirde düz sınıf state holderine yerleştirilebilecek olan UI logicini UI’in kendisinde inline olarak gerçekleştirmeyi seçer. Bu, basit durumlar için iyidir, ancak diğer durumlar için, logici düz bir sınıf state holderine çekerek okunabilirliği artırabilirsiniz
@@ -339,7 +339,7 @@ Yukarıdaki bölümlerden, bir ViewModel ve bir düz sınıf state holder arası
 ![State holders in the UI State production pipeline. Arrows mean data flow.](/assets/images/state-holders-and-ui-state-img4.png)
 Sonuç olarak, tüketildiği yere en yakın state holderlerini kullanarak UI state’i üretmelisiniz. Daha az resmi olarak, uygun ownershipligi surdururken state’i mümkün olduğunca düşük tutmalısınız. Business logice erişmeniz gerekiyorsa ve UI state’inin, Activity yeniden olusturulmasi genelinde bile bir ekrana gidilebildiği sürece devam etmesi gerekiyorsa, bir [ViewModel](/docs/app-architecture/architecture-components/ui-layer-libraries/lifecycle-aware-components/ViewModel/about-viewmodel), business logic state holder implement etmeniz için harika bir seçimdir. Daha kısa ömürlü UI state ve UI logic için, yaşam döngüsü yalnızca UI'ye bağlı olan düz bir sınıf yeterli olmalıdır.
 
-#### State holders are compoundable
+### State holders are compoundable
 Bağımlılıklar eşit veya daha kısa bir ömre sahip olduğu sürece state holderlar diğer state holderlara bağımlı olabilir. Bunun örnekleri şunlardır:
 
 * bir UI logic state holder başka bir UI logic state holder'a bağlı olabilir.
@@ -422,4 +422,4 @@ fun MyScreen(
 Aşağıdaki diyagram, UI ile önceki kod parçacığının farklı state holder'ları arasındaki bağımlılıkları temsil etmektedir:
 ![Ui depending on the different state holders. Arrows mean dependencies.](/assets/images/state-holders-and-ui-state-img5.png)
 
-#### [Samples](https://developer.android.com/topic/architecture/ui-layer/stateholders#samples)
+### [Samples](https://developer.android.com/topic/architecture/ui-layer/stateholders#samples)
