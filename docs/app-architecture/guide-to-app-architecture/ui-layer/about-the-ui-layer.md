@@ -41,7 +41,7 @@ atabilmesi gerekir. Özetle, uygulama, kullanıcıların aşağıdakileri yapmas
 * Oturum açın ve belirli makalelere yer işareti koyun.
 * Uygunsa bazı premium özelliklere erişin.
 
-![UI Layer Case Study](/assets/images/ui-layer-case-study.png)
+![UI Layer Case Study](/assets/images/jetnews-ui-layer-case-study.png)
 
 Aşağıdaki bölümler, bu örneği, tek yönlü veri akışı ilkelerini tanıtmak ve bu ilkelerin UI katmanı için uygulama
 mimarisi bağlamında çözmeye yardımcı olduğu sorunları göstermek için bir use case olarak kullanır.
@@ -75,7 +75,7 @@ için bazı metadata ile birlikte bir makale listesi gösterir. Uygulamanın kul
 Başka bir deyişle: UI, kullanıcının gördüğü şeyse, UI state, uygulamanın görmeleri gerektiğini söylediği şeydir. Aynı
 madalyonun iki yüzü gibi, UI da UI state’in görsel temsilidir. UI state’indeki herhangi bir değişiklik, hemen UI'ye
 yansıtılır.
-![UI, UI state’i ile ekrandaki UI elementlerinin bağlanmasının bir sonucudur.](/assets/images/ui-state.png)
+![UI, UI state’i ile ekrandaki UI elementlerinin bağlanmasının bir sonucudur.](https://developer.android.com/static/topic/libraries/architecture/images/mad-arch-ui-elements-state.png)
 
 Use case incelemesini düşünün; News uygulamasının gereksinimlerini karşılamak için, kullanıcı arayüzünü tam olarak
 oluşturmak için gereken bilgiler, aşağıdaki gibi tanımlanan bir NewsUiState data classda encapsule edilebilir:
