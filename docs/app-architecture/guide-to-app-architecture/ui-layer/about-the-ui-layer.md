@@ -23,9 +23,11 @@ dönüştüren ve ardından bunu görüntüleyen piplinedir.
 Şekil 1. Uygulama mimarisinde UI katmanının rolü;
 ![UI Layer Role](/assets/images/ui-layer-role.png)
 
-<mark style="background-color: lightblue">Not: Bu sayfada sunulan öneriler ve best practiceler, ölçeklenmelerine, kalite
+{: .note}
+Not: Bu sayfada sunulan öneriler ve best practiceler, ölçeklenmelerine, kalite
 ve sağlamlığı artırmalarına ve test edilmelerini kolaylaştırmalarına olanak sağlamak için geniş bir uygulama yelpazesine
-uygulanabilir. Ancak, bunları kılavuz olarak ele almalı ve gerektiğinde gereksinimlerinize göre uyarlamalısınız.</mark>
+uygulanabilir. Ancak, bunları kılavuz olarak ele almalı ve gerektiğinde gereksinimlerinize göre uyarlamalısınız.
+
 
 [Architecture: The UI Layer - MAD Skills](https://youtu.be/p9VR8KbmzEE)
 
@@ -108,9 +110,11 @@ hatalara neden olur.
 bu flag bir makalenin bookmarked statüsünün kaynağı olarak data katmanı ile rekabet halinde olacaktı. Immutable data
 class'lar bu tür antipattern'leri önlemek için çok kullanışlıdır.
 
-<mark style = "background-color: lightblue">Kilit Nokta: Yalnızca veri kaynakları veya ownerlari, ortaya koydukları
+{: .note }
+Kilit Nokta: Yalnızca veri kaynakları veya ownerlari, ortaya koydukları
 verilerin güncellenmesinden sorumlu olmalıdır.
-</mark>
+
+
 
 ### Naming conventions in this guide
 
@@ -148,11 +152,13 @@ bir [ViewModel](/docs/app-architecture/architecture-components/ui-layer-librarie
 Yukarıdaki [case study](#a-basic-case-study) deki News uygulaması, örneğin, o bölümde görüntülenen ekran için UI state
 oluşturmak üzere state holder olarak bir NewsViewModel sınıfını kullanır.
 
-<mark style = "background-color: lightblue">Kilit Nokta: ViewModel türü, veri katmanına erişimle birlikte ekran
+{: .note }
+Kilit Nokta: ViewModel türü, veri katmanına erişimle birlikte ekran
 düzeyinde Ui state’inin yönetimi için önerilen implementasyondur. Ayrıca, yapılandırma değişikliklerinden(configuration
 changes) otomatik olarak kurtulur. ViewModel sınıfları, uygulamadaki eventlara uygulanacak logic’i tanımlar ve sonuç
 olarak güncellenmiş state’i üretir.
-</mark>
+
+
 UI ile state producer arasındaki karşılıklı bağımlılığı modellemenin birçok yolu vardır. Bununla birlikte,UI ile
 ViewModel sınıfı arasındaki etkileşim, büyük ölçüde event input ve ardından gelen state output olarak
 anlaşılabileceğinden, ilişki aşağıdaki şemada gösterildiği gibi gösterilebilir:
@@ -257,7 +263,8 @@ flowlara benzer bir giriş için bkz. [Android'de Kotlin flows](https://develope
 Compose'un mutableStateOf veya snapshotFlow gibi gözlemlenebilir State API'lerini kullanabilirsiniz. Bu kılavuzda
 gördüğünüz StateFlow veya LiveData gibi her türlü gözlemlenebilir data holder, uygun extensionlar kullanılarak
 Compose'da kolayca tüketilebilir.
-</mark>
+
+
 
 UI'ye maruz kalan verilerin nispeten basit olduğu durumlarda, state holderin yayılımı(emission) ile ilişkili ekran veya
 UI elementi arasındaki ilişkiyi aktardığı için genellikle verileri bir UI state tipine sarmaya değer. Ayrıca, UI
@@ -356,8 +363,10 @@ Yukarıdaki örnekte, NewsViewModel sınıfı, belirli bir kategori için makale
 sonucunu (başarılı veya başarısız) UI’in buna uygun şekilde tepki verebileceği UI state’inde yansıtır. Hata handle etme
 hakkında daha fazla bilgi edinmek için [Show errors on the screen](#show-errors-on-the-screen) bölümüne bakın
 
-<mark style = "background-color: lightblue">Not: State’in ViewModel'deki fonksiyonlar aracılığıyla değiştirildiği
-yukarıdaki örnekte gösterilen pattern, tek yönlü veri akışının(UDF) en popüler uygulamalarından biridir.</mark>
+{: .note }
+Not: State’in ViewModel'deki fonksiyonlar aracılığıyla değiştirildiği
+yukarıdaki örnekte gösterilen pattern, tek yönlü veri akışının(UDF) en popüler uygulamalarından biridir.
+
 
 ### Additional considerations
 
@@ -438,10 +447,12 @@ fun LatestNewsScreen(
 }
 ```
 
-<mark style = "background-color: lightblue">Not: Bu örnekte kullanılan belirli StateFlow objectleri, active
+{: .note }
+Not: Bu örnekte kullanılan belirli StateFlow objectleri, active
 collectorleri olmadığında çalışmayı durdurmaz, ancak flowlarla çalışırken bunların nasıl uygulandığını
 bilmeyebilirsiniz. Yaşam döngüsüne duyarlı flow collection kullanmak, daha sonra downstream collector kodunu tekrar
-ziyaret etmeden ViewModel flowlarinda bu tür değişiklikleri yapmanızı sağlar.</mark>
+ziyaret etmeden ViewModel flowlarinda bu tür değişiklikleri yapmanızı sağlar.
+
 
 ### Show in-progress operations
 

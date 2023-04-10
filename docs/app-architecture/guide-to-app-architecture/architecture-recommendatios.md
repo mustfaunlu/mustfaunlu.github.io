@@ -11,7 +11,8 @@ parent: Guide to app architecture
 ### Recommendations for Android Architecture
 Bu sayfada çeşitli [Architecture](guide-to-app-architecture) best practiceleri ve önerileri sunulmaktadır. Uygulamanızın kalitesini, sağlamlığını ve ölçeklenebilirliğini artırmak için bunları benimseyin. Ayrıca uygulamanızın bakımını ve test edilmesini de kolaylaştırırlar.
 
-<mark style = "background-color:lightblue">Not: Bu belgedeki önerileri katı gereklilikler olarak değil tavsiyeler olarak ele almalısınız. Gerektiğinde bunları uygulamanıza uyarlayın.</mark>
+<mark style = "background-color:lightblue">Not: Bu belgedeki önerileri katı gereklilikler olarak değil tavsiyeler olarak ele almalısınız. Gerektiğinde bunları uygulamanıza uyarlayın.
+
 
 Aşağıdaki best practiceler konuya göre gruplandırılmıştır. Her birinin, ekibin ne kadar güçlü bir şekilde önerdiğini yansıtan bir önceliği vardır. Öncelikler listesi aşağıdaki gibidir:
 
@@ -19,7 +20,8 @@ Aşağıdaki best practiceler konuya göre gruplandırılmıştır. Her birinin,
 * <span style="color:deepskyblue"> Recommended: </span> Bu pratiğin uygulamanızı geliştirmesi muhtemeldir.
 * <span style="color:orangered"> Optional: </span> Bu pratik, belirli durumlarda uygulamanızı geliştirebilir.
 
-<mark style = "background-color:lightblue">Not: Bu önerileri anlamak için [Architecture kılavuzu](guide-to-app-architecture)na aşina olmanız gerekir.</mark>
+<mark style = "background-color:lightblue">Not: Bu önerileri anlamak için [Architecture kılavuzu](guide-to-app-architecture)na aşina olmanız gerekir.
+
 
 ### Layer Architecture
 Önerdiğimiz [katmanlı mimari](about-app-architecture.md#recommended-app-architecture), seperation of concern'i destekler. UI'yi veri modellerinden yönlendirir, single source of truth ilkesine uyar ve [undirectional data flow](about-app-architecture.md#unidirectional-data-flow) ilkelerini takip eder. İşte katmanlı mimari için bazı best practiceler:

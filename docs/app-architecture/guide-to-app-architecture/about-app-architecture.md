@@ -8,10 +8,12 @@ parent: Guide to app architecture
 ## About app architecture
 Bu kılavuz, sağlam, yüksek kaliteli uygulamalar oluşturmak için best practiceleri ve önerilen mimariyi kapsar.
 
-<mark style="background-color: lightblue">Not: Bu sayfada Android Framework ile ilgili temel bilgilere sahip olduğunuz
+{: .note}
+Not: Bu sayfada Android Framework ile ilgili temel bilgilere sahip olduğunuz
 varsayılmaktadır. Android uygulama geliştirme konusunda yeniyseniz, başlamak ve bu kılavuzda bahsedilen kavramlar
 hakkında daha fazla bilgi edinmek
-için [Android Basics kursu](https://developer.android.com/courses/android-basics-kotlin/course) na göz atın. </mark>
+için [Android Basics kursu](https://developer.android.com/courses/android-basics-kotlin/course) na göz atın. 
+
 
 ### Mobile app user experiences
 
@@ -105,7 +107,9 @@ ve SSOT patterinin tüm avantajlarını beraberinde getirir
 ### Recommended app architecture
 Bu bölüm, önerilen best practiseleri izleyerek uygulamanızı nasıl yapılandıracağınızı gösterir.
 
-<mark style="background-color: lightblue"> Not: Bu sayfada sunulan öneriler ve best practiseler, ölçeklenmelerine, kalite ve sağlamlığı artırmalarına ve test edilmelerini kolaylaştırmalarına olanak sağlamak için geniş bir uygulama yelpazesine uygulanabilir. Ancak, bunları kılavuz olarak ele almalı ve gerektiğinde gereksinimlerinize göre uyarlamalısınız.</mark>
+{: .note}
+ Not: Bu sayfada sunulan öneriler ve best practiseler, ölçeklenmelerine, kalite ve sağlamlığı artırmalarına ve test edilmelerini kolaylaştırmalarına olanak sağlamak için geniş bir uygulama yelpazesine uygulanabilir. Ancak, bunları kılavuz olarak ele almalı ve gerektiğinde gereksinimlerinize göre uyarlamalısınız.
+
 
 Bahsedilen ortak mimari ilkeler göz önüne alındığında, her uygulamada en az iki katman olmalıdır:
 
@@ -118,7 +122,9 @@ Kullanıcı arabirimi(UI) ve veri katmanları arasındaki etkileşimleri basitle
 
 Tipik bir uygulama mimari diagrami bu sekilde gorunur.
 
-<mark style = "background-color: lightblue">Not:Buradaki oklar katmanlar arasi bagimliliklari gostermektedir. Mesela domain layer, data layer a bagimlidir.</mark>
+{: .note }
+Not:Buradaki oklar katmanlar arasi bagimliliklari gostermektedir. Mesela domain layer, data layer a bagimlidir.
+
 ### Modern App Architecture
 Bu Modern App Architecture, diğerlerinin yanı sıra aşağıdaki tekniklerin kullanılmasını teşvik eder:
 

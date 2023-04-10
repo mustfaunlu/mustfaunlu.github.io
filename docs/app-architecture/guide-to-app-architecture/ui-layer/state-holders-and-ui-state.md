@@ -195,8 +195,10 @@ Boyutu veya kapsamı ne olursa olsun, her UI elementinin karşılık gelen state
 bir state holderin, bir UI state değişikliği ile sonuçlanabilecek herhangi bir kullanıcı eylemini kabul edebilmesi ve
 işleyebilmesi ve ardından gelen state değişikliğini üretebilmesi gerekir.
 
-<mark style = "background-color: lightblue">Not: State holderler kesinlikle gerekli değildir. Basit UI’kar, logiclerini
-presentation kodlarıyla inline olarak barındırabilir.</mark>
+{: .note }
+Not: State holderler kesinlikle gerekli değildir. Basit UI’kar, logiclerini
+presentation kodlarıyla inline olarak barındırabilir.
+
 
 ### Types of state holders
 
@@ -212,7 +214,8 @@ bakılmaktadır.
 <mark style= "background-color: lightblue">Not: Bir UI logic state holderi, data veya domain katmanlarından gelen
 bilgilere bağlıysa, bu bilgileri ona bir business logic state holderinden iletmelisiniz. Bunun nedeni, business logic
 state holderinin, UI yaşam döngüsünden bağımsız olduğu için UI logici state holderinden daha uzun ömürlü
-olmasıdır.</mark>
+olmasıdır.
+
 
 ### Business logic and its state holder
 
@@ -227,7 +230,9 @@ kullanıcı deneyimi sağlamak için business logic kullanan state holderlerini 
 | Possess long lived state(uzun omurlu state tutmak)                                           | Business logic state holderlari genellikle navigasyon destinationlari için state’i yönetmek amacila kullanılır. Sonuç olarak, genellikle navigasyon graphden kaldırılana kadar statelerini navigasyon değişikliklerinde korurlar.                                                                                                                                                                                                                           |
 | Is unique to its UI and is not reusable(Kullanıcı arayüzüne özgüdür ve yeniden kullanılamaz) | Business logic state holderleri tipik olarak belirli bir uygulama fonksiyonaltesi icin üretilir, örneğin bir TaskEditViewModel veya bir TaskListViewModel için state üretir ve bu nedenle yalnızca o uygulama fonksiyonalitesi için geçerlidir. Aynı state holder, farklı form faktörlerinde bu uygulama fonksiyonalitelerini destekleyebilir. Örneğin, uygulamanın mobil, TV ve tablet sürümleri aynı business logic state holderini yeniden kullanabilir. |
 
-<mark style="background-color: lightblue">Not: Business logic state holderlar; ViewModel instancelari yukarıda belirtilen özelliklerin birçoğunu, özellikle de Activity yeniden oluşturma sırasında hayatta kaldigi icin, tipik olarak bir ViewModel instance ile implement edilirler.</mark>
+{: .note}
+Not: Business logic state holderlar; ViewModel instancelari yukarıda belirtilen özelliklerin birçoğunu, özellikle de Activity yeniden oluşturma sırasında hayatta kaldigi icin, tipik olarak bir ViewModel instance ile implement edilirler.
+
 
 Örneğin, ["Now in Android"](https://github.com/android/nowinandroid) uygulamasında yazar navigation hedefini göz önünde bulundurun:
 
@@ -262,10 +267,14 @@ AuthorViewModel'in daha önce belirtilen business logic state holder özellikler
 
 
 
-<mark style="background-color: lightblue">Not: ViewModel'i yalnızca destination düzeyinde UI ile kullanmalısınız. Bunları, UI’in arama çubukları veya chip grupları gibi yeniden kullanılabilir parçalarında kullanmamalısınız. Bu durumlarda düz sınıflar daha uygundur.</mark>
+{: .note}
+Not: ViewModel'i yalnızca destination düzeyinde UI ile kullanmalısınız. Bunları, UI’in arama çubukları veya chip grupları gibi yeniden kullanılabilir parçalarında kullanmamalısınız. Bu durumlarda düz sınıflar daha uygundur.
 
-<mark style="background-color: red">Uyarı: ViewModel instancelarini diğer composable fonksiyonlara argüman olarak vermeyin. Bunu yapmak, composable fonksiyonu ViewModel türüyle birleştirerek daha az yeniden kullanılabilir ve test edilmesini ve önizlemesini zorlaştırır. Ayrıca, ViewModel instancesini yöneten net bir tek doğruluk kaynağı (SSOT) olmayacaktır. ViewModel'i devre dışı bırakmak, birden çok composable öğenin ViewModel fonksiyonlarini çağırmasına ve state’i değiştirmesine izin vererek hataların debugini zorlaştırır. Bunun yerine, UDF best practicelerini izleyin ve yalnızca gerekli state’i iletin. Aynı şekilde, yayılan eventleri ViewModel'in composable SSOT'sine ulaşana kadar iletin. Eventi handle eden ve karşılık gelen ViewModel methodlarini çağıran SSOT budur.
-</mark>
+
+{: .warning }
+Uyarı: ViewModel instancelarini diğer composable fonksiyonlara argüman olarak vermeyin. Bunu yapmak, composable fonksiyonu ViewModel türüyle birleştirerek daha az yeniden kullanılabilir ve test edilmesini ve önizlemesini zorlaştırır. Ayrıca, ViewModel instancesini yöneten net bir tek doğruluk kaynağı (SSOT) olmayacaktır. ViewModel'i devre dışı bırakmak, birden çok composable öğenin ViewModel fonksiyonlarini çağırmasına ve state’i değiştirmesine izin vererek hataların debugini zorlaştırır. Bunun yerine, UDF best practicelerini izleyin ve yalnızca gerekli state’i iletin. Aynı şekilde, yayılan eventleri ViewModel'in composable SSOT'sine ulaşana kadar iletin. Eventi handle eden ve karşılık gelen ViewModel methodlarini çağıran SSOT budur.
+
+
 
 ### The ViewModel as a business logic state holder
 ViewModels'in Android geliştirmedeki faydaları, onları business logice erişim sağlamak ve uygulama verilerini ekranda presentation için hazırlamak için uygun hale getirir. Bu faydalar aşağıdakileri içerir:
@@ -277,7 +286,9 @@ ViewModels'in Android geliştirmedeki faydaları, onları business logice erişi
 
 * Hilt gibi diğer Jetpack library ile entegrasyon saglar.
 
-<mark style="background-color: lightblue">Not: ViewModel avantajları kullanım durumunuz için geçerli değilse veya işleri farklı bir şekilde yapıyorsanız, ViewModel'in sorumluluklarını düz state holder sınıflara taşıyabilirsiniz.</mark>
+{: .note}
+Not: ViewModel avantajları kullanım durumunuz için geçerli değilse veya işleri farklı bir şekilde yapıyorsanız, ViewModel'in sorumluluklarını düz state holder sınıflara taşıyabilirsiniz.
+
 
 ### UI logic and its state holder
 
@@ -290,7 +301,9 @@ UI logic, UI'nin kendisinin sağladığı veriler üzerinde çalışan logictir.
 
 UI logic state holder, tipik olarak düz bir sınıfla uygulanır. Bunun nedeni, UI logic state holderinin oluşturulmasından UI'nin kendisinin sorumlu olması ve UI logic state holderinin, UI'nin kendisi ile aynı yaşam döngüsüne sahip olmasıdır. Örneğin Jetpack Compose'da state holder, Composition’un bir parçasıdır ve Composition’un yaşam döngüsünü takip eder.
 
-<mark style="background-color: lightblue">Not: Düz sınıf state holderleri, UI logici, UI'den taşınacak kadar karmaşık olduğunda kullanılır. Aksi takdirde, UI logici, UI'de inline olarak uygulanabilir.</mark>
+{: .note}
+Not: Düz sınıf state holderleri, UI logici, UI'den taşınacak kadar karmaşık olduğunda kullanılır. Aksi takdirde, UI logici, UI'de inline olarak uygulanabilir.
+
 Now in Android örneğindeki aşağıdaki örnekte gösterilebilir:
 ![The now in android sample app](/assets/images/now-in-android-img2.png)
 Now in Android örneği, cihazın ekran boyutuna bağlı olarak navigtion için bir bottom appbar veya bir navigation raili gösterir. Daha küçük ekranlar alttaki appbari ve daha büyük ekranlar navigation rail kullanır.
@@ -328,13 +341,17 @@ Yukarıdaki örnekte, NiaAppState ile ilgili aşağıdaki ayrıntılar dikkat ç
 * Activity yeniden olustugunda hayatta kalamaz: NiaAppState, Compose adlandırma kurallarına uygun bir Composable fonksiyonu ile [rememberNiaAppState](https://github.com/android/nowinandroid/blob/main/app/src/main/java/com/google/samples/apps/nowinandroid/ui/NiaAppState.kt#L46) oluşturularak Compositionda hatırlanır. Activity yeniden oluşturulduktan sonra, önceki instancelar kaybolur ve yeniden oluşturulan Activity'nin yeni yapılandırmasına uygun olarak tüm bağımlılıkları iletilmiş yeni bir instance oluşturulur. Bu bağımlılıklar yeni olabilir veya önceki yapılandırmadan geri yüklenebilir. Örneğin, rememberNavController(), niaAppState constructorunda kullanılır ve Activity yeniden olusturulmasi boyunca state’i korumak için rememberSaveable'a yetki verir.
 * UI kapsamlı veri kaynaklarına referansları vardır: NavigationController, Resources ve diğer benzer yaşam döngüsü kapsamındaki tiplere yapılan refereanslar, aynı yaşam döngüsü kapsamını paylaştıklarından NiaAppState'te güvenle tutulabilir.
 
-<mark style="background-color: lightblue">Not: Düz state holder sınıfları, arama çubukları veya chip grupları gibi yeniden kullanılabilir kullanıcı arabirimi parçaları için önerilir. Bu durumda ViewModels'i kullanmamalısınız çünkü bunlar en iyi navigation destination için state’i yönetmek ve business logice erişim için kullanılır.</mark>
+{: .note}
+Not: Düz state holder sınıfları, arama çubukları veya chip grupları gibi yeniden kullanılabilir kullanıcı arabirimi parçaları için önerilir. Bu durumda ViewModels'i kullanmamalısınız çünkü bunlar en iyi navigation destination için state’i yönetmek ve business logice erişim için kullanılır.
+
 
 ### Choose between a ViewModel and plain class for a state holder
 Yukarıdaki bölümlerden, bir ViewModel ve bir düz sınıf state holder arasında seçim yapmak, UI state’ine uygulanan logice ve logicin üzerinde çalıştığı veri kaynaklarına iner.
 
-<mark style="background-color: lightblue">Not: Çoğu uygulama, aksi takdirde düz sınıf state holderine yerleştirilebilecek olan UI logicini UI’in kendisinde inline olarak gerçekleştirmeyi seçer. Bu, basit durumlar için iyidir, ancak diğer durumlar için, logici düz bir sınıf state holderine çekerek okunabilirliği artırabilirsiniz
-</mark>
+{: .note}
+Not: Çoğu uygulama, aksi takdirde düz sınıf state holderine yerleştirilebilecek olan UI logicini UI’in kendisinde inline olarak gerçekleştirmeyi seçer. Bu, basit durumlar için iyidir, ancak diğer durumlar için, logici düz bir sınıf state holderine çekerek okunabilirliği artırabilirsiniz
+
+
 Özetle, aşağıdaki diyagram, UI State’i production pipelinedaki state holderlerinin pozisyonunu gösterir:
 ![State holders in the UI State production pipeline. Arrows mean data flow.](/assets/images/state-holders-and-ui-state-img4.png)
 Sonuç olarak, tüketildiği yere en yakın state holderlerini kullanarak UI state’i üretmelisiniz. Daha az resmi olarak, uygun ownershipligi surdururken state’i mümkün olduğunca düşük tutmalısınız. Business logice erişmeniz gerekiyorsa ve UI state’inin, Activity yeniden olusturulmasi genelinde bile bir ekrana gidilebildiği sürece devam etmesi gerekiyorsa, bir [ViewModel](/docs/app-architecture/architecture-components/ui-layer-libraries/lifecycle-aware-components/ViewModel/about-viewmodel), business logic state holder implement etmeniz için harika bir seçimdir. Daha kısa ömürlü UI state ve UI logic için, yaşam döngüsü yalnızca UI'ye bağlı olan düz bir sınıf yeterli olmalıdır.
@@ -369,7 +386,8 @@ fun rememberMyAppState(
 }
 ```
 <mark style="background-color:red">Dikkat: Screen level state holderların bir ekranın veya ekranın bir kısmının business logic karmaşıklığını yönettiği göz önüne alındığında, bir screen level state holderın başka bir screen level state holdera bağlı olması mantıklı olmayacaktır. Bu senaryodaysanız, ekranlarınızı ve state holder'larınızı yeniden gözden geçirin ve ihtiyacınız olanın bu olduğundan emin olun.
-</mark>
+
+
 
 Bir state holder'dan daha uzun ömürlü bir bağımlılık örneği, bir screen level state holder'a bağlı olan bir UI logic state holder olabilir. Bu, daha kısa ömürlü state holder'ın yeniden kullanılabilirliğini azaltır ve gerçekte ihtiyaç duyduğundan daha fazla logic ve state'e erişmesini sağlar.
 

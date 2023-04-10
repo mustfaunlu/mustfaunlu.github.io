@@ -22,7 +22,8 @@ atın.
 
 <mark style="background-color:lightblue">ot: Bu sayfada yer alan öneriler ve best practiceler, ölçeklenmelerini
 sağlamak, kaliteyi ve sağlamlığı artırmak ve test edilmelerini kolaylaştırmak için geniş bir uygulama yelpazesine
-uygulanabilir. Ancak, bunları kılavuz olarak ele almalı ve gerektiğinde gereksinimlerinize göre uyarlamalısınız.</mark>
+uygulanabilir. Ancak, bunları kılavuz olarak ele almalı ve gerektiğinde gereksinimlerinize göre uyarlamalısınız.
+
 
 [Architecture: The data layer - MAD Skills](https://youtu.be/r5AseKQh2ZE)
 
@@ -65,10 +66,12 @@ class ExampleRepository(
 ) { /* ... */ }
 ```
 
-<mark style="background-color: lightblue">Not: Genellikle, bir repository yalnızca tek bir veri kaynağı içerdiğinde ve
+{: .note}
+Not: Genellikle, bir repository yalnızca tek bir veri kaynağı içerdiğinde ve
 diğer repository'lere bağlı olmadığında, geliştiriciler repository'lerin ve veri kaynaklarının sorumluluklarını
 repository sınıfında birleştirir. Bunu yaparsanız, uygulamanızın sonraki bir sürümünde repository'nin başka bir
-kaynaktan gelen verileri işlemesi gerekiyorsa fonksiyonları bölmeyi unutmayın.</mark>
+kaynaktan gelen verileri işlemesi gerekiyorsa fonksiyonları bölmeyi unutmayın.
+
 
 ### Expose APIs
 
@@ -125,7 +128,8 @@ bir interface oluşturabilir ve veri kaynağının iki implementasyonuna sahip o
 için, diğeri de yenisi için. Bu durumda, veri kaynağı sınıf adları için teknolojinin adını kullanmanızda bir sakınca
 yoktur (bu bir uygulama ayrıntısı olsa bile) çünkü repository veri kaynağı sınıflarının kendisini değil yalnızca
 interface'i görür. Taşıma işlemini tamamladığınızda, yeni sınıfı, adında uygulama ayrıntısı içermeyecek şekilde yeniden
-adlandırabilirsiniz.</mark>
+adlandırabilirsiniz.
+
 
 ### Multiple levels of repositories
 
@@ -137,9 +141,11 @@ için LoginRepository ve RegistrationRepository gibi diğer repository'lere bağ
 
 ![Dependency graph of a repository that depends on other repositories.](/assets/images/data-layer-img1.png)
 
-<mark style="background-color: lightblue">Not: Geleneksel olarak, bazı geliştiriciler diğer repository sınıflarına bağlı
+{: .note}
+Not: Geleneksel olarak, bazı geliştiriciler diğer repository sınıflarına bağlı
 olan repository sınıflarını manager olarak adlandırırlar; örneğin UserRepository yerine UserManager. İsterseniz bu
-adlandırma kuralını kullanabilirsiniz.</mark>
+adlandırma kuralını kullanabilirsiniz.
+
 
 ### Source of truth
 
@@ -293,7 +299,8 @@ bir Result sınıfı kullanmaktır. Bu model, sonucun işlenmesinin bir parças�
 sinyalleri modeller. Bu modelde, data katmanı T yerine bir Result<T> tipi döndürerek UI'nin belirli senaryolarda
 oluşabilecek bilinen hatalardan haberdar olmasını sağlar. Bu, [LiveData]gibi uygun exception handling'e sahip olmayan
 reaktif programlama API'leri için gereklidir.
-</mark>
+
+
 
 Coroutine'lerdeki hatalar hakkında daha fazla bilgi edinmek
 için [Exceptions in coroutines](https://medium.com/androiddevelopers/exceptions-in-coroutines-ce8da1ec060c) blog
@@ -351,10 +358,12 @@ interface'in [Retrofit](https://square.github.io/retrofit/)
 veya [HttpURLConnection](https://developer.android.com/reference/java/net/HttpURLConnection) tarafından desteklenmesi
 fark etmez. Interface'lere güvenmek, API implementasyonlarını uygulamanızda değiştirilebilir hale getirir.
 
-<mark style="background-color: lightblue">Püf Noktası: Interface'lere güvenmek, API implementasyonlarını uygulamanızda
+{: .note}
+Püf Noktası: Interface'lere güvenmek, API implementasyonlarını uygulamanızda
 değiştirilebilir hale getirir. Ölçeklenebilirlik sağlamanın ve bağımlılıkları daha kolay değiştirmenize izin vermenin
 yanı sıra, testlere sahte veri kaynağı uygulamaları ekleyebildiğiniz için test edilebilirliği de destekler.
-</mark>
+
+
 
 ### Create the repository
 

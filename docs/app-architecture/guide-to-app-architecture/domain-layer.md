@@ -21,7 +21,8 @@ Domain katmanı aşağıdaki faydaları sağlar:
 
 Bu sınıfları basit ve hafif tutmak için, her kullanım senaryosu yalnızca tek bir fonksiyonellik üzerinde sorumluluk sahibi olmalı ve mutable veri içermemelidir. Bunun yerine mutable verileri UI veya data katmanlarınızda ele almalısınız.
 
-<mark style="background-color:lightblue">Not: Bu sayfadaki öneriler ve best practiceler, ölçeklenmelerini sağlamak, kaliteyi ve sağlamlığı artırmak ve test edilmelerini kolaylaştırmak için geniş bir uygulama yelpazesine uygulanabilir. Ancak, bunları kılavuz olarak ele almalı ve gerektiğinde gereksinimlerinize göre uyarlamalısınız.</mark>
+<mark style="background-color:lightblue">Not: Bu sayfadaki öneriler ve best practiceler, ölçeklenmelerini sağlamak, kaliteyi ve sağlamlığı artırmak ve test edilmelerini kolaylaştırmak için geniş bir uygulama yelpazesine uygulanabilir. Ancak, bunları kılavuz olarak ele almalı ve gerektiğinde gereksinimlerinize göre uyarlamalısınız.
+
 
 [Architecture: The Domain Layer - MAD Skills](https://youtu.be/gIhjCh3U88I)
 
@@ -105,7 +106,8 @@ UI katmanında bulunan tekrarlanabilir business logic'i bir use case sınıfınd
 
 Daha önce açıklanan FormatDateUseCase örneğini düşünün. Tarih biçimlendirmeyle ilgili iş gereksinimleriniz gelecekte değişirse, kodu yalnızca tek bir merkezi yerde değiştirmeniz gerekir.
 
-<mark style="background-color:lightblue">Not: Bazı durumlarda, use case'lerde bulunabilecek lojik, bunun yerine Util sınıflarındaki statik metotların bir parçası olabilir. Ancak, Util sınıflarını bulmak genellikle zor olduğundan ve işlevlerini keşfetmek zor olduğundan, ikincisi önerilmez. Ayrıca, use case'ler temel sınıflarda thread ve error handling gibi ortak işlevleri paylaşabilir ve bu da ölçek olarak daha büyük ekiplere fayda sağlayabilir.</mark>
+<mark style="background-color:lightblue">Not: Bazı durumlarda, use case'lerde bulunabilecek lojik, bunun yerine Util sınıflarındaki statik metotların bir parçası olabilir. Ancak, Util sınıflarını bulmak genellikle zor olduğundan ve işlevlerini keşfetmek zor olduğundan, ikincisi önerilmez. Ayrıca, use case'ler temel sınıflarda thread ve error handling gibi ortak işlevleri paylaşabilir ve bu da ölçek olarak daha büyük ekiplere fayda sağlayabilir.
+
 ### Combine repositories
 Bir haber uygulamasında, sırasıyla haber ve yazar veri işlemlerini gerçekleştiren NewsRepository ve AuthorsRepository sınıflarına sahip olabilirsiniz. NewsRepository'nin sunduğu Article sınıfı yalnızca yazarın adını içerir, ancak ekranda yazar hakkında daha fazla bilgi görüntülemek istersiniz. Yazar bilgileri AuthorsRepository'den elde edilebilir.
 ![Combine repositeries](/assets/images/domain-layer-img2.png)
@@ -137,7 +139,8 @@ Logic, haber listesindeki tüm öğeleri mapler; bu nedenle data katmanı main-s
 
 <mark style="background-color:lightblue">
 Not: Room kütüphanesi, bir veritabanındaki farklı entityler arasındaki ilişkileri sorgulamanızı sağlar. Veritabanı source of truth ise, tüm bu işi sizin için yapan bir query oluşturabilirsiniz. Bu durumda, bir use case yerine NewsWithAuthorsRepository gibi bir repository sınıfı oluşturmak daha iyidir.
-</mark>
+
+
 
 ### Other consumers
 UI katmanının yanı sıra, domain katmanı servisler ve Application sınıfı gibi diğer sınıflar tarafından da yeniden kullanılabilir. Ayrıca, TV veya Wear gibi diğer platformlar mobil uygulama ile kod tabanını paylaşıyorsa, UI katmanları da domain katmanının yukarıda bahsedilen tüm avantajlarını elde etmek için use case'leri yeniden kullanabilir.

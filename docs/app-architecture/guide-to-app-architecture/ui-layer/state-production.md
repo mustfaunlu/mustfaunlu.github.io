@@ -57,8 +57,10 @@ Sonraki bölümler, çeşitli inputlar için en uygun state productin teknikleri
 * Yaşam döngüsünün farkında(Lifecycle aware): UI’in visible veya active olmadığı durumlarda, açıkça gerekli olmadıkça state production pipeline herhangi bir kaynak tüketmemelidir.
 * Kullanımı kolay(Easy to consume): UI, üretilen UI state’ini kolayca oluşturabilmelidir(produce etmelidir). State production pipelinenin outputuna yönelik hususlar, View sistemi veya Jetpack Compose gibi farklı View API'lerinde değişiklik gösterecektir.
 
-<mark style="background-color: lightblue">Not: İzleyen bölümlerde, tartışılan tüm API'ler deyimsel Kotlin ve Jetpack Compose kodunu kullanır. Ancak kılavuz, Java Programlama Dili veya Kotlin'deki diğer API'lerdeki eşdeğer analogları için geçerlidir.
-</mark>
+{: .note}
+Not: İzleyen bölümlerde, tartışılan tüm API'ler deyimsel Kotlin ve Jetpack Compose kodunu kullanır. Ancak kılavuz, Java Programlama Dili veya Kotlin'deki diğer API'lerdeki eşdeğer analogları için geçerlidir.
+
+
 
 ### Input in state production pipelines
 
@@ -207,7 +209,8 @@ class AddEditTaskViewModel(...) : ViewModel() {
   }
 }
 ```
-<mark style="background-color:lightblue">Not: Bir [AAC  ViewModel](/docs/app-architecture/architecture-components/ui-layer-libraries/lifecycle-aware-components/ViewModel/about-viewmodel.md)'in viewModelScope'unda başlatılan coroutineler, istisnai olarak veya başka türlü tamamlanmaya çalışır. Bu, Coroutines açıkça iptal edilmedikçe veya ViewModel temizlenmedikçe, UI görünür olsun ya da olmasın gerçekleşir. Kısa ömürlü olma eğiliminde olduklarından, çoğu istek için bu genellikle uygundur. 5 saniye veya daha uzun süren istekleri çalıştırmak için viewModelScope kullanmamalısınız. Bunun yerine bunları WorkManager ile ertelenmiş veya uzun süreli işler olarak kuyruğa almalısınız.</mark>
+<mark style="background-color:lightblue">Not: Bir [AAC  ViewModel](/docs/app-architecture/architecture-components/ui-layer-libraries/lifecycle-aware-components/ViewModel/about-viewmodel.md)'in viewModelScope'unda başlatılan coroutineler, istisnai olarak veya başka türlü tamamlanmaya çalışır. Bu, Coroutines açıkça iptal edilmedikçe veya ViewModel temizlenmedikçe, UI görünür olsun ya da olmasın gerçekleşir. Kısa ömürlü olma eğiliminde olduklarından, çoğu istek için bu genellikle uygundur. 5 saniye veya daha uzun süren istekleri çalıştırmak için viewModelScope kullanmamalısınız. Bunun yerine bunları WorkManager ile ertelenmiş veya uzun süreli işler olarak kuyruğa almalısınız.
+
 
 ### Mutating the UI state from background threads
 UI state’inin productionu için main dispacther Coroutines'in başlatılması tercih edilir. Yani, aşağıdaki kod parçacıklarındaki withContext bloğunun dışında. Ancak, UI state’ini farklı bir backgroud context’inde güncellemeniz gerekirse, bunu aşağıdaki API'leri kullanarak yapabilirsiniz:
@@ -268,10 +271,12 @@ class DiceRollViewModel(
 }
 ```
 <mark style="background-color:lightblue">Not: Başlatılan tüm coroutinelerin farklı bir contexden çağrılması gerekiyorsa, doğrudan viewModelScope.launch(defaultDispatcher){ } öğesini arayabilirsiniz.
-</mark>
+
+
 
 <mark style="background-color:red">Uyarı: Snapshot.withMutableSnapshot{ } kullanılmadan UI olmayan bir threadden Compose state’inin güncellenmesi, üretilen state’de tutarsızlıklara neden olabilir.
-</mark>
+
+
 
 ### Stream APIs as sources of state change
 Streamlerde zaman içinde birden çok değer üreten state değişikliği kaynakları için, tüm kaynakların outputlarini uyumlu bir bütün halinde birleştirmek, state üretimine(production) doğrudan bir yaklaşımdır.Kotlin Flows kullanırken bunu [combine](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/combine.html) fonksiyonu ile başarabilirsiniz. Bunun bir örneği, InterestsViewModel'deki "[Now in Android](https://github.com/android/nowinandroid)" örneğinde görülebilir:
@@ -300,14 +305,17 @@ class InterestsViewModel(
 ```
 
 <mark style="background-color:lightblue">Not: Combined Flow’u, UI state için gözlemlenebilir API olarak bir [StateFlow](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow)'a dönüştürmek için [stateIn](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/state-in.html) operatörünü kullanabilirsiniz.
-</mark>
+
+
 StateFlows oluşturmak için stateIn operatörünün kullanılması, yalnızca UI görünürken aktif olması gerekebileceğinden, UI'ye state production pipeline’in activitysi üzerinde daha ayrıntılı kontrol sağlar.
 * Flow’un yaşam döngüsüne duyarlı bir şekilde collect edilmesi sırasında pipeline’in yalnızca UI görünür olduğunda etkin olması gerekiyorsa SharingStarted.WhileSubscription() öğesini kullanın.
 * Kullanıcı UI’e dönebildiği sürece, yani UI backstackde veya ekran dışında başka bir sekmede olduğu sürece pipeline’in aktif olması gerekiyorsa SharingStarted.Lazily kullanın.
 
 Stream tabanlı state kaynaklarının collectinin geçerli olmadığı durumlarda, Kotlin Flows gibi stream API'leri, streamlerin UI state’ine işlenmesine yardımcı olmak için [merging](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/merge.html?query=fun%20%3CT%3E%20merge(vararg%20flows:%20Flow%3CT%3E), [flattening](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flat-map-latest.html?query=inline%20fun%20%3CT,%20R%3E%20Flow%3CT%3E.flatMapLatest(crossinline%20transform:%20suspend%20(T) vb. gibi zengin bir transformation seti sunar.
 
-<mark style="background-color: lightblue">Anahtar Nokta: Çoğu durumda combine, stream API'lerinden state productiona yönelik tavsiye edilen bir yaklaşımdır.</mark>
+{: .note}
+Anahtar Nokta: Çoğu durumda combine, stream API'lerinden state productiona yönelik tavsiye edilen bir yaklaşımdır.
+
 
 ### One-shot and stream APIs as sources of state change
 
@@ -378,7 +386,9 @@ class TaskDetailViewModel @Inject constructor(
   }
 }
 ```
-<mark style="background-color: lightblue">Not: Compose State, [snapshotFlow { }](https://developer.android.com/reference/kotlin/androidx/compose/runtime/package-summary#snapshotFlow(kotlin.Function0)) API kullanılarak bir flowa dönüştürülür. Başka bir örnek için "Now In Android" örneğindeki [ForYouViewModel](https://github.com/android/nowinandroid/blob/main/feature-foryou/src/main/java/com/google/samples/apps/nowinandroid/feature/foryou/ForYouViewModel.kt)'e bakın.</mark>
+{: .note}
+Not: Compose State, [snapshotFlow { }](https://developer.android.com/reference/kotlin/androidx/compose/runtime/package-summary#snapshotFlow(kotlin.Function0)) API kullanılarak bir flowa dönüştürülür. Başka bir örnek için "Now In Android" örneğindeki [ForYouViewModel](https://github.com/android/nowinandroid/blob/main/feature-foryou/src/main/java/com/google/samples/apps/nowinandroid/feature/foryou/ForYouViewModel.kt)'e bakın.
+
 
 Output types in state production pipelines
 
@@ -421,6 +431,7 @@ class MyViewModel : ViewModel() {
 }
 ```
 <mark style="background-color:red">Uyarı: Bir ViewModel'in init bloğunda veya constructor'ında asenkron işlemler başlatmaktan kaçının. Asenkron işlemler bir nesne oluşturmanın yan etkisi olmamalıdır çünkü asenkron kod, nesne tam olarak başlatılmadan önce nesneden okuyabilir veya nesneye yazabilir. Bu aynı zamanda leaking the object (nesnenin sızdırılması) olarak da adlandırılır ve ince ve teşhis edilmesi zor hatalara yol açabilir. Bu özellikle Compose State ile çalışırken önemlidir. ViewModel Compose State fieldlarini tuttuğunda, ViewModel'in init bloğunda Compose State fieldlarını güncelleyen bir Coroutine başlatmayın, aksi takdirde bir IllegalStateException oluşabilir.
-</mark>
+
+
 
 ### [Samples](https://developer.android.com/topic/architecture/ui-layer/state-production#samples)

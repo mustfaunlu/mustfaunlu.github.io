@@ -13,7 +13,9 @@ eventleridir. Kullanıcı, uygulamayla etkileşim kurarak, örneğin ekrana doku
 kullanıcı eventleri oluşturur. UI daha sonra onClick() listenerlar gibi callbackleri kullanarak bu olayları tüketir(
 consume eder).
 
-<mark style = "background-color: lightblue"> Anahtar terimler: </mark>
+{: .note }
+ Anahtar terimler: 
+
 
 * Kullanıcı Arabirimi(UI): Kullanıcı arabirimini yöneten View tabanlı kod veya Compose kodu.
 * UI eventleri(Kullanici arabirimi olaylari): UI layerda handle edilmesi gereken gereken actionlar.
@@ -36,8 +38,10 @@ türlerini aşağıdaki gibi tanımlar:
 * UI davranış mantığı veya UI mantığı(UI behavior logic veya UI logic), state değişikliklerinin nasıl görüntüleneceğini
   ifade eder; örneğin, navigation logic’i veya kullanıcıya mesajların nasıl gösterileceği. UI bu logic’i handle eder.
 
-<mark style = "background-color: lightblue"> Not: Bu sayfada sunulan öneriler ve best practiceler, geniş bir uygulama yelpazesine uygulanarak ölçeklenebilir, kaliteyi ve sağlamlığı artırabilir ve test edilmesini kolaylaştırabilir. Ancak, bunları kılavuz olarak ele almalı ve gereksinimlerinize göre uyarlamalısınız.
-</mark>
+{: .note }
+ Not: Bu sayfada sunulan öneriler ve best practiceler, geniş bir uygulama yelpazesine uygulanarak ölçeklenebilir, kaliteyi ve sağlamlığı artırabilir ve test edilmesini kolaylaştırabilir. Ancak, bunları kılavuz olarak ele almalı ve gereksinimlerinize göre uyarlamalısınız.
+
+
 
 [Architecture: Handling UI events-MAD Skills](https://youtu.be/lwGtp0Yr0PE)
 
@@ -156,12 +160,16 @@ kullanma olasılığını azaltır. Yalnızca activity sınıfının ViewModel i
 ayırmış olursunuz. Bu, viewler veya RecyclerView adapterlari gibi UI’e özgü nesnelerin ViewModel ile doğrudan etkileşime
 girmemesini sağlar.
 
-<mark style="background-color: red">Uyarı: ViewModel'i RecyclerView adapterina passlamak kötü bir uygulamadır çünkü
-adapteri ViewModel sınıfıyla sıkı bir şekilde birleştirir.</mark>
+{: .warning }
+Uyarı: ViewModel'i RecyclerView adapterina passlamak kötü bir uygulamadır çünkü
+adapteri ViewModel sınıfıyla sıkı bir şekilde birleştirir.
 
-<mark style="background-color: lightblue">Not: Diğer bir yaygın pattern, RecyclerView adapterinin kullanıcı eylemleri(
+
+{: .note}
+Not: Diğer bir yaygın pattern, RecyclerView adapterinin kullanıcı eylemleri(
 actionlari) için bir callback interfaceine sahip olmasıdır. Bu durumda, activty veya fragment bindingi handle edebilir
-ve doğrudan callback interfaceinden ViewModel methodlarini çağırabilir.</mark>
+ve doğrudan callback interfaceinden ViewModel methodlarini çağırabilir.
+
 
 ### Naming conventions for user event functions
 
@@ -182,7 +190,8 @@ bu kullanıcı akışını UI state’inizde nasıl temsil edeceğinizi düşün
 gereken işlemleri düşünmeyin; bu actionlarinin UI state’ini nasıl etkilediğini düşünün.
 
 <mark style="background-color:lightblue">Anahtar Nokta: ViewModel eventleri her zaman bir UI state güncellemesiyle
-sonuçlanmalıdır.</mark>
+sonuçlanmalıdır.
+
 
 Örneğin, kullanıcı oturum açma ekranında oturum açtığında ana ekrana gitme durumunu düşünün. Bunu UI state’inde
 aşağıdaki gibi modelleyebilirsiniz:
@@ -249,9 +258,11 @@ fun LoginScreen(
 }
 ```
 
-<mark style="background-color: lightblue">Not: Bu bölümdeki kod
+{: .note}
+Not: Bu bölümdeki kod
 örnekleri [coroutinelerin ve bunların yaşam döngüsüne duyarlı bileşenlerle nasıl kullanılacağı](/docs/app-architecture/architecture-components/ui-layer-libraries/lifecycle-aware-components/use-kotlin-coroutines-with-lifecycle-aware-components)
-nın anlaşılmasını gerektirir.</mark>
+nın anlaşılmasını gerektirir.
+
 
 ### Consuming events can trigger state updates
 
@@ -368,8 +379,10 @@ fun LatestNewsScreen(
 ```
 Mesaj geçici olsa da, UI state, zamanın her noktasında ekranda görüntülenenlerin aslına sadık bir temsilidir. Kullanıcı mesajı görüntülenir veya görüntülenmez.
 
-<mark style="background-color: lightblue">Not: Ekranda gösterilecek kullanıcı mesajlarının listesini içeren daha gelişmiş bir kullanım örneği için [Jetsnack Compose](https://github.com/android/compose-samples/blob/main/Jetsnack/app/src/main/java/com/example/jetsnack/model/SnackbarManager.kt) örneğine bakın.
-</mark>
+{: .note}
+Not: Ekranda gösterilecek kullanıcı mesajlarının listesini içeren daha gelişmiş bir kullanım örneği için [Jetsnack Compose](https://github.com/android/compose-samples/blob/main/Jetsnack/app/src/main/java/com/example/jetsnack/model/SnackbarManager.kt) örneğine bakın.
+
+
 
 ### Navigation Events
 [Consuming events can trigger state updates](#consuming-events-can-trigger-state-updates)  bölümü, kullanıcı mesajlarını ekranda görüntülemek için UI state’ini nasıl kullandığınızı ayrıntılarıyla açıklar. Navigasyon eventleri, bir Android uygulamasında da yaygın olarak görülen bir event türüdür.
@@ -571,8 +584,10 @@ UI event usecaseinizin UI state güncellemeleriyle çözülemeyeceğini düşün
 * Birden çok consumer varsa ve activitynin birden çok kez consume edilmesinden endişe ediyorsanız uygulama mimarinizi yeniden gözden geçirmeniz gerekebilir. Birden fazla concurrent consumure sahip olmak, tam olarak bir kez teslim edilen sözleşmenin garanti edilmesinin son derece zor hale gelmesine neden olur, bu nedenle karmaşıklık ve subtle behavior miktarı patlar. Bu sorunu yaşıyorsanız, bu endişeleri kullanıcı arabirimi ağacınızda yukarıya taşımayı düşünün; hiyerarşide daha üstte yer alan farklı bir entitye ihtiyacınız olabilir.
 * State’in ne zaman tüketilmesi gerektiğini bir düşünün. Belirli durumlarda, uygulama arka plandayken (örneğin, bir Toast gösterirken) state’i tüketmeye devam etmek istemeyebilirsiniz. Bu gibi durumlarda, kullanıcı arabirimi ön planda olduğunda state’i kullanmayı düşünün.
 
-<mark style = "background-color: lightblue">Not: Bazı uygulamalarda, ViewModel eventlerinin [Kotlin Channels](https://kotlinlang.org/docs/channels.html) veya diğer reactive streams kullanılarak kullanıcı arayüzüne maruz kaldığını görmüş olabilirsiniz. Producer (ViewModel) consumeri (UI—Compose veya Views) geride bıraktığında, bu çözümler bu eventlerin teslimini ve işlenmesini garanti etmez. Bu, geliştirici için gelecekte sorunlara neden olabilir ve aynı zamanda çoğu uygulama için kabul edilemez bir kullanıcı deneyimidir çünkü bu, uygulamayı tutarsız bir durumda bırakabilir, hatalara neden olabilir veya kullanıcı kritik bilgileri kaçırabilir. Bu durumlardan birindeyseniz, o tek seferlik ViewModel eventinin kullanıcı arayüzünüz için gerçekte ne anlama geldiğini tekrar düşünün. Bunları hemen handle edin ve UI state’ine indirin. UI state’i, UI'yi belirli bir zamanda daha iyi temsil eder, size daha fazla teslimat ve işleme garantisi verir, test edilmesi genellikle daha kolaydır ve uygulamanızın geri kalanıyla tutarlı bir şekilde entegre olur.
+{: .note }
+Not: Bazı uygulamalarda, ViewModel eventlerinin [Kotlin Channels](https://kotlinlang.org/docs/channels.html) veya diğer reactive streams kullanılarak kullanıcı arayüzüne maruz kaldığını görmüş olabilirsiniz. Producer (ViewModel) consumeri (UI—Compose veya Views) geride bıraktığında, bu çözümler bu eventlerin teslimini ve işlenmesini garanti etmez. Bu, geliştirici için gelecekte sorunlara neden olabilir ve aynı zamanda çoğu uygulama için kabul edilemez bir kullanıcı deneyimidir çünkü bu, uygulamayı tutarsız bir durumda bırakabilir, hatalara neden olabilir veya kullanıcı kritik bilgileri kaçırabilir. Bu durumlardan birindeyseniz, o tek seferlik ViewModel eventinin kullanıcı arayüzünüz için gerçekte ne anlama geldiğini tekrar düşünün. Bunları hemen handle edin ve UI state’ine indirin. UI state’i, UI'yi belirli bir zamanda daha iyi temsil eder, size daha fazla teslimat ve işleme garantisi verir, test edilmesi genellikle daha kolaydır ve uygulamanızın geri kalanıyla tutarlı bir şekilde entegre olur.
 Bazı kod örnekleriyle yukarıda bahsedilen API'leri neden kullanmamanız gerektiği hakkında daha fazla bilgi edinmek için [ViewModel: One-off event antipatterns](https://medium.com/androiddevelopers/viewmodel-one-off-event-antipatterns-16a1da869b95) blog gönderisini okuyun.
-</mark>
+
+
 
 ### [Samples](https://developer.android.com/topic/architecture/ui-layer/events#samples)
