@@ -2,10 +2,52 @@ title: Türkçe Android Dokümantasyonu
 description: Android Dokümantasyonu Türkçe Çeviri Projesi
 Theme: just-the-docs
 
-url: https://unludev.github.io/
+url: https://mustfaunlu.github.io/
 
-aux_links:
+color_scheme: nil
 
+callouts_level: quiet # or loud
+callouts:
+  highlight:
+    color: yellow
+  important:
+    title: Important
+    color: blue
+  new:
+    title: New
+    color: green
+  note:
+    title: Note
+    color: purple
+  warning:
+    title: Warning
+    color: red
+
+# Google Analytics Tracking (optional)
+# Supports a CSV of tracking ID strings (eg. "UA-1234567-89,G-1AB234CDE5")
+# Note: the main Just the Docs site does *not* use Google Analytics.
+# ga_tracking: UA-2709176-10,G-5FG1HLH3XQ
+# ga_tracking_anonymize_ip: true # Use GDPR compliant Google Analytics settings (true/nil by default)
+permalink: pretty
 
 plugins:
-  - jekyll-default-layout
+  - jekyll-seo-tag
+  - jekyll-github-metadata
+
+kramdown:
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  startings: []
+  blanklines: false
+  profile: false
+  # ignore:
+  #   envs: all
+
+
+
