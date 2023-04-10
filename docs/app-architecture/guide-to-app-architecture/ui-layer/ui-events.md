@@ -189,7 +189,8 @@ düşünce süreciniz, UI’in belirli bir ekrana nasıl yönlendirileceğini be
 bu kullanıcı akışını UI state’inizde nasıl temsil edeceğinizi düşünmeniz gerekir. Başka bir deyişle: UI’in yapması
 gereken işlemleri düşünmeyin; bu actionlarinin UI state’ini nasıl etkilediğini düşünün.
 
-<mark style="background-color:lightblue">Anahtar Nokta: ViewModel eventleri her zaman bir UI state güncellemesiyle
+{: .note }
+Anahtar Nokta: ViewModel eventleri her zaman bir UI state güncellemesiyle
 sonuçlanmalıdır.
 
 

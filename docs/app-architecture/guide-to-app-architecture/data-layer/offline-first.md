@@ -36,8 +36,10 @@ Yukarıdaki kriterleri karşılayabilen bir uygulama genellikle çevrimdışı �
 
 Veri katmanındaki [repository](about-the-data-layer.md#data-layer-architecture)'ler, uygulama verilerini sağlamak için veri kaynaklarını birleştirmekten sorumludur. Çevrimdışı öncelikli bir uygulamada, en kritik görevlerini gerçekleştirmek için ağ erişimine ihtiyaç duymayan en az bir veri kaynağı olmalıdır. Bu kritik görevlerden biri de veri okumaktır.
 
-<mark style = "background-color: lightblue">Not: En azından, çevrimdışı öncelikli bir uygulama ağ erişimi olmadan okuma yapabilmelidir.
-</mark>
+{: .note }
+Not: En azından, çevrimdışı öncelikli bir uygulama ağ erişimi olmadan okuma yapabilmelidir.
+
+
 
 ### Model data in an offline-first app
 Çevrimdışı öncelikli bir uygulama, ağ kaynaklarını kullanan her repository için en az 2 veri kaynağına sahiptir:
@@ -47,7 +49,9 @@ Veri katmanındaki [repository](about-the-data-layer.md#data-layer-architecture)
 
 ![An offline-first repository](/assets/images/offline-first-img1.png)
 
-<mark style = "background-color: lightblue">Not: Çevrimdışı öncelikli bir uygulamada ağ erişimi olan bir repository her zaman lokal bir veri kaynağına sahip olmalıdır.</mark>
+{: .note }
+Not: Çevrimdışı öncelikli bir uygulamada ağ erişimi olan bir repository her zaman lokal bir veri kaynağına sahip olmalıdır.
+
 
 ### The local data source
 Lokal veri kaynağı, uygulama için standart haline gelmiş [source of truth](about-the-data-layer.md#source-of-truth)'tır. Uygulamanın daha yüksek katmanlarının okuduğu tüm verilerin özel kaynağı olmalıdır. Bu, bağlantı durumları arasında veri tutarlılığı sağlar. Lokal veri kaynağı genellikle diske kalıcı olarak aktarılan bir depolama alanı tarafından desteklenir. Verileri diske kalıcı hale getirmenin bazı yaygın yolları şunlardır:
@@ -158,7 +162,9 @@ fun AuthorEntity.asExternalModel() = Author(
     bio = bio,
 )
 ```
-<mark style = "background-color: lightblue">Not: Yukarıdaki gibi mapper'lar genellikle farklı modüllerde tanımlanan modeller arasında eşleme yapar. Sonuç olarak, tightly coupled modüllerden kaçınmak için bu mapperlari kullanıldıkları modüllerde tanımlamak genellikle faydalıdır. Daha fazla ayrıntı için [modularization kılavuzu](/docs/app-architecture/modularization/common-patterns.md#module-to-module-communication)na bakın.</mark>
+{: .note }
+Not: Yukarıdaki gibi mapper'lar genellikle farklı modüllerde tanımlanan modeller arasında eşleme yapar. Sonuç olarak, tightly coupled modüllerden kaçınmak için bu mapperlari kullanıldıkları modüllerde tanımlamak genellikle faydalıdır. Daha fazla ayrıntı için [modularization kılavuzu](/docs/app-architecture/modularization/common-patterns.md#module-to-module-communication)na bakın.
+
 
 ### Reads
 Okumalar, çevrimdışı öncelikli bir uygulamada uygulama verileri üzerindeki temel işlemdir. Bu nedenle, uygulamanızın verileri okuyabildiğinden ve yeni veriler mevcut olur olmaz uygulamanın bunları görüntüleyebildiğinden emin olmalısınız. Bunu yapabilen bir uygulama reaktif bir uygulamadır çünkü okuma API'lerini observable tiplerle sunarlar.
@@ -175,7 +181,9 @@ class OfflineFirstTopicsRepository(
             .map { it.map(TopicEntity::asExternalModel) }
 }
 ```
-<mark style="background-color: lightblue">Not: Çevrimdışı öncelikli bir uygulamada repository'lerden okuma işlemleri doğrudan lokal veri kaynağından okunmalıdır. Herhangi bir güncelleme önce lokal veri kaynağına yazılmalıdır ve lokal veri kaynağı observable olduğu için tüketicilerini güncelleyecektir.</mark>
+{: .note}
+Not: Çevrimdışı öncelikli bir uygulamada repository'lerden okuma işlemleri doğrudan lokal veri kaynağından okunmalıdır. Herhangi bir güncelleme önce lokal veri kaynağına yazılmalıdır ve lokal veri kaynağı observable olduğu için tüketicilerini güncelleyecektir.
+
 
 #### Error handling strategies
 Çevrimdışı öncelikli uygulamalarda hataları ele almanın, oluşabilecekleri veri kaynaklarına bağlı olarak benzersiz yolları vardır. Aşağıdaki alt bölümlerde bu stratejiler özetlenmektedir.
@@ -199,7 +207,9 @@ class AuthorViewModel(
         .catch { emit(Author.empty()) }
 }
 ```
-<mark style = "background-color: lightblue">Not: catch operatörü yalnızca exception'ın uygulamayı çökertmesini engeller, backing Flow yine de sonlanır. Exception'dan sonra flow'tan collecting'e devam etmek için [retry](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/retry.html) metodunu kullanın.</mark>
+{: .note }
+Not: catch operatörü yalnızca exception'ın uygulamayı çökertmesini engeller, backing Flow yine de sonlanır. Exception'dan sonra flow'tan collecting'e devam etmek için [retry](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/retry.html) metodunu kullanın.
+
 
 - Network data source
 Bir network veri kaynağından veri okunurken hata oluşursa, uygulamanın veri getirmeyi yeniden denemek için bir heuristic yöntem kullanması gerekecektir. Yaygın heuristic yöntemler şunlardır:
@@ -267,7 +277,8 @@ Yukarıdaki kod parçasında, yukarıdaki metot askıya aldığı için tercih e
 
     Bu yaklaşım, veriler uygulama için kritik olduğunda doğru seçimdir. Örneğin, çevrimdışı öncelikli bir yapılacaklar listesi uygulamasında, veri kaybı riskini önlemek için kullanıcının çevrimdışı olarak eklediği tüm görevlerin lokal olarak saklanması çok önemlidir.
 
-  <mark style="background-color:lightblue">Not: Çevrimdışı öncelikli uygulamalarda veri yazmak, olası çakışmalar nedeniyle genellikle veri okumaktan daha fazla dikkat gerektirir. Çevrimdışı öncelikli uygulamaların çevrimdışı öncelikli olarak kabul edilmesi için çevrimdışıyken veri yazabilmesi gerekmez.</mark>
+  <mark style="background-color:lightblue">Not: Çevrimdışı öncelikli uygulamalarda veri yazmak, olası çakışmalar nedeniyle genellikle veri okumaktan daha fazla dikkat gerektirir. Çevrimdışı öncelikli uygulamaların çevrimdışı öncelikli olarak kabul edilmesi için çevrimdışıyken veri yazabilmesi gerekmez.
+
 
 ### Synchronization and conflict resolution
 Çevrimdışı öncelikli bir uygulama bağlantısını geri yüklediğinde, lokal veri kaynağındaki verileri network veri kaynağındaki verilerle bağdaştırması gerekir. Bu işleme senkronizasyon denir. Bir uygulamanın network veri kaynağıyla senkronize olmasının iki ana yolu vardır:
@@ -347,7 +358,8 @@ Bazı uygulamalar, verilere bağlı olarak pull veya push based olan hibrit bir 
 
 Sonuç olarak, çevrimdışı öncelikli senkronizasyon seçimi ürün gereksinimlerine ve mevcut teknik altyapıya bağlıdır.
 
-<mark style="background-color:lightblue">Not: Uygulamanızın senkronizasyon yöntemi, uygulamanızın ihtiyaçlarına ve lokal ve network veri kaynaklarını destekleyen altyapının kısıtlamalarına bağlıdır.</mark>
+<mark style="background-color:lightblue">Not: Uygulamanızın senkronizasyon yöntemi, uygulamanızın ihtiyaçlarına ve lokal ve network veri kaynaklarını destekleyen altyapının kısıtlamalarına bağlıdır.
+
 
 
 ### Conflict resolution
@@ -409,8 +421,10 @@ class SyncInitializer : Initializer<Sync> {
 
 ```
 
-<mark style="background-color: lightblue">Not: "Now in Android "deki okuma kuyruğu sadece enqueueUniqueWork API'si ile temsil edilebilecek kadar basittir. Kuyruğun boşaltılma sırası hakkında daha sıkı garantiler için, Room veya Datastore gibi bir veri kalıcılığı API'si ile daha sağlam bir kuyruk uygulamasının gerçekleştirilmesi gerekecektir. Daha sonra bu kuyruğu sırayla boşaltmak için bir Worker ayarlanabilir.
-</mark>
+{: .note}
+Not: "Now in Android "deki okuma kuyruğu sadece enqueueUniqueWork API'si ile temsil edilebilecek kadar basittir. Kuyruğun boşaltılma sırası hakkında daha sıkı garantiler için, Room veya Datastore gibi bir veri kalıcılığı API'si ile daha sağlam bir kuyruk uygulamasının gerçekleştirilmesi gerekecektir. Daha sonra bu kuyruğu sırayla boşaltmak için bir Worker ayarlanabilir.
+
+
 
 Burada SyncWorker.startupSyncWork() aşağıdaki gibi tanımlanır:
 ```kotlin
