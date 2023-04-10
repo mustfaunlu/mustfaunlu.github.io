@@ -17,7 +17,7 @@ Bu projede yer alarak, Android geliştirme topluluğuna katkıda bulunmuş olaca
 
 ## Proje Ekibi
 
-[Mustafa UNLU](https://github.com/unludev){:target="_blank"}
+[Mustafa UNLU](https://github.com/mustfaunlu){:target="_blank"}
 
 
 
