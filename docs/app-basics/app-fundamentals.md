@@ -188,7 +188,7 @@ Aşağıdaki öğeleri kullanarak tüm uygulama bileşenlerini bildirmelisiniz:
 
 Kodlariniza dahil ettiğiniz ancak manifestte beyan etmediğiniz activityler, seviceler ve content providerlar sistem tarafından görülmez ve sonuç olarak hiçbir zaman çalıştırılamaz. Ancak, broadcast receiverlari manifestte bildirilebilir veya bunun yerine kodda dinamik olarak [BroadcastReceiver](https://developer.android.com/reference/android/content/BroadcastReceiver) nesneleri olarak oluşturulabilir ve [registerReceiver()](https://developer.android.com/reference/android/content/Context#registerReceiver(android.content.BroadcastReceiver,%20android.content.IntentFilter)) çağrılarak sisteme kaydedilebilirsiniz.
 
-Uygulamanız için manifest dosyasının nasıl yapılandırılacağı hakkında daha fazla bilgi için [AndroidManifest.xml dosyası](app-manifest-file/about-app-manifests) belgelerine bakın.
+Uygulamanız için manifest dosyasının nasıl yapılandırılacağı hakkında daha fazla bilgi için [AndroidManifest.xml dosyası](about-app-manifests.md) belgelerine bakın.
 
 ### Declare component capabilities
 Yukarıda tartışıldığı gibi, Activating Components bölümünde, activityleri, serviceleri ve broadcast receiverlari başlatmak için bir Intent kullanabilirsiniz. Intentde hedef bileşeni explicit adlandırarak (component sınıfı adını kullanarak) bir intent kullanabilirsiniz. Ayrıca, gerçekleştirilecek eylemin türünü ve isteğe bağlı olarak eylemi gerçekleştirmek istediğiniz verileri açıklayan implicit bir intentde kullanabilirsiniz. Implicit intent, sistemin cihazda eylemi gerçekleştirebilecek ve başlatabilecek bir component bulmasını sağlar. Intent tarafından açıklanan eylemi gerçekleştirebilecek birden fazla component varsa, kullanıcı hangisini kullanacağını seçer.
