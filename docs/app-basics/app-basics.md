@@ -11,7 +11,7 @@ permalink: /docs/app-basics
 ## Introduction
 [Google Codelabs](https://codelabs.developers.google.com/?cat=Android)
 
-[Training Courses  |  Android Developers](https://developer.android.com/courses)
+[Training Courses  `|`  Android Developers](https://developer.android.com/courses)
 
 
 {: .fs-6 .fw-300 }
