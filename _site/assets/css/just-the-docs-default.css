@@ -738,10 +738,7 @@ blockquote {
 }
 
 .main-content-wrap {
-  padding-right: 1rem;
-  padding-left: 1rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding: 1rem;
 }
 @media (min-width: 50rem) {
   .main-content-wrap {
@@ -822,14 +819,11 @@ blockquote {
 }
 
 .site-title {
-  padding-right: 1rem;
-  padding-left: 1rem;
   flex-grow: 1;
   display: flex;
   height: 100%;
   align-items: center;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
+  padding: 0.75rem 1rem;
   color: #27262b;
   font-size: 18px !important;
 }
@@ -885,13 +879,10 @@ body {
 }
 
 .site-footer {
-  padding-right: 1rem;
-  padding-left: 1rem;
   position: absolute;
   bottom: 0;
   left: 0;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding: 1rem;
   color: #959396;
   font-size: 11px !important;
 }
@@ -1180,11 +1171,8 @@ body {
 .nav-list .nav-list-item .nav-list-link {
   display: block;
   min-height: 3rem;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
   line-height: 2.5rem;
-  padding-right: 3rem;
-  padding-left: 1rem;
+  padding: 0.25rem 3rem 0.25rem 1rem;
 }
 @media (min-width: 50rem) {
   .nav-list .nav-list-item .nav-list-link {
