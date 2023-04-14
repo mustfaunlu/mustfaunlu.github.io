@@ -73,7 +73,7 @@ Dikkat: Bu dizindeki içerik APK'nın root dizinindeki diğer dosya ve dizinlerl
 tüm app bundle'ı reddeder. Örneğin, bir `root/lib/` dizini ekleyemezsiniz çünkü bu, her APK'nın zaten içerdiği `lib`
 diziniyle çakışır.
 
-## Overviewof split APKs
+## Overview of split APKs
 
 Optimize edilmiş uygulamalar sunmanın temel bileşenlerinden biri Android 5.0 (API seviyesi 21) ve üzeri sürümlerde
 bulunan split APK mekanizmasıdır. Split APK'lar normal APK'lara çok benzer; derlenmiş DEX bytecode, kaynaklar ve bir
