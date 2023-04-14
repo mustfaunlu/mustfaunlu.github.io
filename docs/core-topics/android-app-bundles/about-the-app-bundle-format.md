@@ -1,3 +1,12 @@
+---
+layout: default
+title: About The Android App Bundle format
+grand_parent: Core topics
+nav_order: 5
+parent: Android App Bundles
+---
+
+
 ## The Android App Bundle format
 
 Android App Bundle, Google Play'e yüklediğiniz bir dosyadır (.aab dosya uzantılı).
