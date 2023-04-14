@@ -1,3 +1,11 @@
+---
+layout: default
+title: About App Bundles
+grand_parent: Core topics
+nav_order: 1
+parent: Android App Bundles
+---
+
 
 ## About Android App Bundles
 
