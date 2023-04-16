@@ -21,7 +21,7 @@ Google Play, her cihaz yapılandırması için optimize edilmiş APK'lar oluştu
 
 Uygulamanızı yayınlamak için app bundle biçimini kullandığınızda, isteğe bağlı olarak uygulama projenize feature modülleri eklemenize olanak tanıyan Play Feature Delivery özelliğinden de yararlanabilirsiniz. Bu modüller, yalnızca sizin belirlediğiniz koşullara bağlı olarak uygulamanıza dahil edilen veya daha sonra çalışma zamanında Play Core Library kullanılarak indirilebilen özellikler ve kaynaklar içerir.
 
-Uygulamalarını app bundle'larla yayınlayan oyun geliştiricileri Play Asset Delivery'yi kullanabilir: Google Play'in geliştiricilere esnek sunum yöntemleri ve yüksek performans sunan büyük miktarda oyun varlığı sunma çözümü.
+Uygulamalarını app bundle'larla yayınlayan oyun geliştiricileri Play Asset Delivery'yi kullanabilir: Google Play'in geliştiricilere esnek sunum yöntemleri ve yüksek performans sunan büyük miktarda oyun asset'i sunma çözümü.
 
 Uygulamanızı neden Android App Bundle'ları kullanarak yayınlamanız gerektiğine dair genel bir bakış için aşağıdaki videoyu izleyin.
 
