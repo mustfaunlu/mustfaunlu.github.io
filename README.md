@@ -7,3 +7,7 @@ Bu GitHub sayfası, proje ekibi tarafından çevirisi yapılmış olan Android d
 Projenin ilerleyişi ve son durumu hakkında güncel bilgilere bu sayfa üzerinden erişebilirsiniz. Ayrıca projenin GitHub deposuna da erişim sağlayarak, kodlar üzerinde değişiklik yapabilir ve pull requestler ile projeye katkıda bulunabilirsiniz.
 
 Bu projede yer alarak, Android geliştirme topluluğuna katkıda bulunmuş olacak ve Türkçe dilinde daha geniş bir Android dokümantasyonu kütüphanesi oluşmasına destek vermiş olacaksınız.
+
+Projeyi geçici olarak https://mustfaunlu.github.io/ sitesi üzerinde tutuyorum. İlerleyen dönemde başka domaine aktarılacak.
+
+Not: Projenin gidişatı belirsizdir vakit oldukça çevirilere devam ediyorum. Hali hazırda 400 sayfa çeviri var fakat word üzerinden buraya markdown halinde aktarmak vakit alıyor. Ayrıca çeviriler birebir Türkçe değildir. Bazı yapıların isminin orjinal kalması daha mantıklı geliyor. Mesela broadcast receiver yerine yayın alıcı/yapıcı gibi bir çeviri kullanmak istemedim.
