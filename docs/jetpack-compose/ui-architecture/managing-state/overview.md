@@ -47,7 +47,7 @@ Initial composition (İlk kompozisyon): composables'ı ilk kez çalıştırarak 
 Recomposition: veri değiştiğinde Composition'ı güncellemek için composables'ın yeniden çalıştırılması.
 
 
-Initial composition ve recomposition hakkında daha fazla bilgi edinmek için [Thinking in Compose](doc/jetpack-comose/introduction/thinking-in-compose) bölümüne bakınız.
+Initial composition ve recomposition hakkında daha fazla bilgi edinmek için [Thinking in Compose](/docs/jetpack-compose/introduction/thinking-in-compose) bölümüne bakınız.
 
 
 ## State in composables
@@ -419,6 +419,6 @@ Bu belgede, Compose'da state'i yönetmenin temellerini öğrendiniz. Daha fazla 
 ### Codelabs
 - [Using State in Jetpack Compose](https://codelabs.developers.google.com/codelabs/jetpack-compose-state/index.html?index=..%2F..index#0)
 ### Videos
--[A Compose state of mind](https://www.youtube.com/watch?v=rmv2ug-wW4U)
+- [A Compose state of mind](https://www.youtube.com/watch?v=rmv2ug-wW4U)
 ### Blogs
 - [Effective State Management for TextField in Compose](https://medium.com/androiddevelopers/effective-state-management-for-textfield-in-compose-d6e5b070fbe5)
