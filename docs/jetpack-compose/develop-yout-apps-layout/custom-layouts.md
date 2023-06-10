@@ -98,7 +98,12 @@ fun TextWithNormalPaddingPreview() {
 ![](https://developer.android.com/static/images/jetpack/compose/layout-previews-showing-text-baseline-padding.png)
 
 ## Create custom layouts
+Layout modifier yalnızca çağıran composable'ı değiştirir. Birden fazla composable'ı ölçmek ve düzenlemek için bunun yerine Layout composable'ını kullanın. Bu composable, alt öğeleri manuel olarak ölçmenize ve yerleştirmenize olanak tanır. Column ve Row gibi tüm üst düzey layoutlar Layout composable ile oluşturulur.
 
+{: .note}
+Not: View sisteminde, custom bir layout oluşturmak için ViewGroup'u extend etmek ve measure ve layout fonksiyonlarını uygulamak gerekiyordu. Compose'da Layout composable'ı kullanarak bir fonksiyon yazmanız yeterlidir.
+
+Column'un çok temel bir versiyonunu oluşturalım. Çoğu custom layout bu paterni takip eder:
 ```kotlin
 @Composable
 fun MyBasicColumn(
@@ -114,6 +119,8 @@ fun MyBasicColumn(
     }
 }
 ```
+
+Layout modifier'a benzer şekilde, measurables ölçülmesi gereken çocukların listesidir ve constraints ebeveynden gelen kısıtlamalardır. Daha önce olduğu gibi aynı mantığı izleyerek, MyBasicColumn şu şekilde uygulanabilir:
 ```kotlin
 @Composable
 fun MyBasicColumn(
@@ -148,6 +155,9 @@ fun MyBasicColumn(
     }
 }
 ```
+Alt composable'lar Layout kısıtlamaları ile kısıtlanır (minHeight kısıtlamaları olmadan) ve bir önceki composable'ın yPosition değerine göre yerleştirilirler.
+
+İşte bu custom composable'ın nasıl kullanılacağı:
 ```kotlin
 @Composable
 fun CallingComposable(modifier: Modifier = Modifier) {
