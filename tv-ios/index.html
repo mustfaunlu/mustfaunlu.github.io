@@ -3,43 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tv-iOS - Destek ve Yardım</title>
+    <title>tv-iOS - iPhone Uygulaması</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; background: #f5f5f5; }
-        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; }
-        h1 { color: #333; text-align: center; }
-        .feature { background: #f9f9f9; padding: 20px; margin: 20px 0; border-radius: 8px; }
-        .demo-url { background: #e8f4fd; padding: 15px; margin: 10px 0; border-radius: 5px; font-family: monospace; }
-        .contact { background: #e8f5e8; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h1 { 
+            color: #2d3748; 
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            color: #718096;
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+        
+        .feature { 
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            padding: 30px; 
+            margin: 30px 0; 
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature h2 {
+            color: #2d3748;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .demo-url { 
+            background: linear-gradient(135deg, #e6fffa, #b2f5ea);
+            padding: 20px; 
+            margin: 15px 0; 
+            border-radius: 10px; 
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+            font-size: 0.9rem;
+            border: 1px solid #81e6d9;
+            word-break: break-all;
+            color: #234e52;
+        }
+        
+        .contact { 
+            background: linear-gradient(135deg, #f0fff4, #c6f6d5);
+            padding: 30px; 
+            margin: 30px 0; 
+            border-radius: 15px;
+            border-left: 5px solid #48bb78;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact h2 {
+            color: #2d3748;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .contact p {
+            margin: 15px 0;
+            color: #2d3748;
+            font-size: 1.1rem;
+        }
+        
+        .contact strong {
+            color: #22543d;
+        }
+        
+        .faq-item {
+            background: linear-gradient(135deg, #fffaf0, #fef5e7);
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 12px;
+            border-left: 5px solid #ed8936;
+        }
+        
+        .faq-item strong {
+            color: #c05621;
+        }
+        
+        .icon {
+            font-size: 2rem;
+            margin-right: 15px;
+            vertical-align: middle;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .feature, .contact, .faq-item {
+                padding: 20px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>📺 tv-iOS Uygulaması</h1>
-        <p>Apple TV için gelişmiş televizyon deneyimi</p>
+        <div class="header">
+            <h1>📱 tv-iOS iPhone Uygulaması</h1>
+            <p class="subtitle">iPhone için gelişmiş televizyon deneyimi</p>
+        </div>
         
         <div class="feature">
             <h2>🎯 Demo HLS Stream URL'leri</h2>
-            <p>App Store review için test edilebilir HLS stream'ler:</p>
+            <p>Test amaçlı kullanabileceğiniz HLS stream:</p>
             <div class="demo-url">https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_4x3/bipbop_4x3_variant.m3u8</div>
-            <div class="demo-url">https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8</div>
-            <div class="demo-url">https://hls-js.netlify.app/demo/</div>
         </div>
         
         <div class="contact">
             <h2>📞 Destek ve İletişim</h2>
-            <p><strong>E-posta:</strong> support@sirius-apps.com</p>
-            <p><strong>GitHub:</strong> <a href="https://github.com/team-whiz-kid/tv-iOS">tv-iOS Repository</a></p>
-            <p><strong>Hata Bildirimi:</strong> <a href="https://github.com/team-whiz-kid/tv-iOS/issues">GitHub Issues</a></p>
+            <p><strong>E-posta:</strong> whizkid.team.sirius@gmail.com</p>
         </div>
         
         <div class="feature">
             <h2>❓ Sık Sorulan Sorular</h2>
-            <p><strong>Q:</strong> Uygulama neden açılmıyor?</p>
-            <p><strong>A:</strong> Apple TV'yi yeniden başlatın ve uygulamayı App Store'dan yeniden indirin.</p>
             
-            <p><strong>Q:</strong> Video oynatılamıyor, ne yapmalıyım?</p>
-            <p><strong>A:</strong> İnternet bağlantınızı kontrol edin ve HLS stream URL'inin geçerli olduğundan emin olun.</p>
+            <div class="faq-item">
+                <p><strong>Q:</strong> Uygulama neden açılmıyor?</p>
+                <p><strong>A:</strong> iPhone'u yeniden başlatın ve uygulamayı App Store'dan yeniden indirin.</p>
+            </div>
+            
+            <div class="faq-item">
+                <p><strong>Q:</strong> Video oynatılamıyor, ne yapmalıyım?</p>
+                <p><strong>A:</strong> İnternet bağlantınızı kontrol edin ve HLS stream URL'inin geçerli olduğundan emin olun.</p>
+            </div>
+            
+            <div class="faq-item">
+                <p><strong>Q:</strong> Uygulama hangi iOS sürümlerini destekliyor?</p>
+                <p><strong>A:</strong> iOS 14.0 ve üzeri sürümleri desteklemektedir.</p>
+            </div>
         </div>
     </div>
 </body>
