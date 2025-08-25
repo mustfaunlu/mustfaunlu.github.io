@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tv-iOS - iPhone Uygulaması</title>
+    <title>IPTV Watch - World Channels in One Place</title>
     <style>
         * {
             margin: 0;
@@ -31,11 +31,31 @@
         .header {
             text-align: center;
             margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .language-switch {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: transform 0.3s ease;
+        }
+        
+        .language-switch:hover {
+            transform: scale(1.05);
         }
         
         h1 { 
             color: #2d3748; 
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 10px;
             background: linear-gradient(135deg, #667eea, #764ba2);
             -webkit-background-clip: text;
@@ -45,8 +65,9 @@
         
         .subtitle {
             color: #718096;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 300;
+            margin-bottom: 20px;
         }
         
         .feature { 
@@ -67,6 +88,12 @@
             color: #2d3748;
             margin-bottom: 20px;
             font-size: 1.5rem;
+        }
+        
+        .feature p {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 15px;
         }
         
         .demo-url { 
@@ -118,6 +145,34 @@
             color: #c05621;
         }
         
+        .download-section {
+            background: linear-gradient(135deg, #e6fffa, #b2f5ea);
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 15px;
+            border-left: 5px solid #81e6d9;
+            text-align: center;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+        }
+        
+        .download-btn:hover {
+            transform: scale(1.05);
+        }
+        
         .icon {
             font-size: 2rem;
             margin-right: 15px;
@@ -131,10 +186,15 @@
             }
             
             h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
-            .feature, .contact, .faq-item {
+            .language-switch {
+                position: relative;
+                margin-bottom: 20px;
+            }
+            
+            .feature, .contact, .faq-item, .download-section {
                 padding: 20px;
             }
         }
@@ -143,39 +203,72 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>📱 tv-iOS iPhone Uygulaması</h1>
-            <p class="subtitle">iPhone için gelişmiş televizyon deneyimi</p>
+            <button class="language-switch" onclick="toggleLanguage()">🇬🇧 English</button>
+            <h1>📺 IPTV Watch</h1>
+            <p class="subtitle" data-tr="Dünya Kanalları Tek Yerde" data-en="World Channels in One Place">Dünya Kanalları Tek Yerde</p>
         </div>
         
         <div class="feature">
-            <h2>🎯 Demo HLS Stream URL'leri</h2>
-            <p>Test amaçlı kullanabileceğiniz HLS stream:</p>
+            <h2 data-tr="🎯 Demo HLS Stream URL" data-en="🎯 Demo HLS Stream URL">🎯 Demo HLS Stream URL</h2>
+            <p data-tr="Test amaçlı kullanabileceğiniz HLS stream:" data-en="HLS stream for testing purposes:">Test amaçlı kullanabileceğiniz HLS stream:</p>
             <div class="demo-url">https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_4x3/bipbop_4x3_variant.m3u8</div>
         </div>
         
+        <div class="download-section">
+            <h2 data-tr="📱 Uygulamayı İndir" data-en="📱 Download the App">📱 Uygulamayı İndir</h2>
+            <p data-tr="IPTV Watch uygulamasını App Store veya Google Play'den indirin ve dünya kanallarını keşfedin!" data-en="Download IPTV Watch from the App Store or Google Play and discover world channels!">IPTV Watch uygulamasını App Store veya Google Play'den indirin ve dünya kanallarını keşfedin!</p>
+            <a href="https://apps.apple.com/us/app/iptv-watch/id6748964851" class="download-btn" data-tr="App Store'dan İndir" data-en="Download from App Store">App Store'dan İndir</a>
+            <a href="https://play.google.com/store/apps/details?id=com.sirius.iptv" class="download-btn" data-tr="Google Play'den İndir" data-en="Download from Google Play">Google Play'den İndir</a>
+        </div>
+        
         <div class="contact">
-            <h2>📞 Destek ve İletişim</h2>
-            <p><strong>E-posta:</strong> whizkid.team.sirius@gmail.com</p>
+            <h2 data-tr="📞 Destek ve İletişim" data-en="📞 Support and Contact">📞 Destek ve İletişim</h2>
+            <p><strong data-tr="E-posta:" data-en="Email:">E-posta:</strong> whizkid.team.sirius@gmail.com</p>
         </div>
         
         <div class="feature">
-            <h2>❓ Sık Sorulan Sorular</h2>
+            <h2 data-tr="❓ Sık Sorulan Sorular" data-en="❓ Frequently Asked Questions">❓ Sık Sorulan Sorular</h2>
             
             <div class="faq-item">
-                <p><strong>Q:</strong> Uygulama neden açılmıyor?</p>
-                <p><strong>A:</strong> iPhone'u yeniden başlatın ve uygulamayı App Store'dan yeniden indirin.</p>
+                <p><strong data-tr="Q:" data-en="Q:">Q:</strong> <span data-tr="Uygulama neden açılmıyor?" data-en="Why doesn't the app open?">Uygulama neden açılmıyor?</span></p>
+                <p><strong data-tr="A:" data-en="A:">A:</strong> <span data-tr="iPhone'u yeniden başlatın ve uygulamayı App Store'dan yeniden indirin." data-en="Restart your iPhone and reinstall the app from the App Store.">iPhone'u yeniden başlatın ve uygulamayı App Store'dan yeniden indirin.</span></p>
             </div>
             
             <div class="faq-item">
-                <p><strong>Q:</strong> Video oynatılamıyor, ne yapmalıyım?</p>
-                <p><strong>A:</strong> İnternet bağlantınızı kontrol edin ve HLS stream URL'inin geçerli olduğundan emin olun.</p>
+                <p><strong data-tr="Q:" data-en="Q:">Q:</strong> <span data-tr="Video oynatılamıyor, ne yapmalıyım?" data-en="Video won't play, what should I do?">Video oynatılamıyor, ne yapmalıyım?</span></p>
+                <p><strong data-tr="A:" data-en="A:">A:</strong> <span data-tr="İnternet bağlantınızı kontrol edin ve HLS stream URL'inin geçerli olduğundan emin olun." data-en="Check your internet connection and make sure the HLS stream URL is valid.">İnternet bağlantınızı kontrol edin ve HLS stream URL'inin geçerli olduğundan emin olun.</span></p>
             </div>
             
             <div class="faq-item">
-                <p><strong>Q:</strong> Uygulama hangi iOS sürümlerini destekliyor?</p>
-                <p><strong>A:</strong> iOS 14.0 ve üzeri sürümleri desteklemektedir.</p>
+                <p><strong data-tr="Q:" data-en="Q:">Q:</strong> <span data-tr="Uygulama hangi iOS sürümlerini destekliyor?" data-en="Which iOS versions does the app support?">Uygulama hangi iOS sürümlerini destekliyor?</span></p>
+                <p><strong data-tr="A:" data-en="A:">A:</strong> <span data-tr="iOS 17.6 ve üzeri sürümleri desteklemektedir." data-en="It supports iOS 17.6 and above.">iOS 17.6 ve üzeri sürümleri desteklemektedir.</span></p>
             </div>
         </div>
     </div>
+
+    <script>
+        let currentLanguage = 'tr';
+        
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'tr' ? 'en' : 'tr';
+            updateLanguage();
+        }
+        
+        function updateLanguage() {
+            const elements = document.querySelectorAll('[data-tr][data-en]');
+            elements.forEach(element => {
+                element.textContent = element.getAttribute(`data-${currentLanguage}`);
+            });
+            
+            const button = document.querySelector('.language-switch');
+            if (currentLanguage === 'tr') {
+                button.textContent = '🇬🇧 English';
+                document.documentElement.lang = 'tr';
+            } else {
+                button.textContent = '🇹🇷 Türkçe';
+                document.documentElement.lang = 'en';
+            }
+        }
+    </script>
 </body>
 </html>
