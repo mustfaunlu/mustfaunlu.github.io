@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taboo - Word Guessing Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .language-switch {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: transform 0.3s ease;
+        }
+        
+        .language-switch:hover {
+            transform: scale(1.05);
+        }
+        
+        h1 { 
+            color: #2d3748; 
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            color: #718096;
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+        
+        .feature { 
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            padding: 30px; 
+            margin: 30px 0; 
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature h2 {
+            color: #2d3748;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .feature p {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .contact { 
+            background: linear-gradient(135deg, #f0fff4, #c6f6d5);
+            padding: 30px; 
+            margin: 30px 0; 
+            border-radius: 15px;
+            border-left: 5px solid #48bb78;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact h2 {
+            color: #2d3748;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .contact p {
+            margin: 15px 0;
+            color: #2d3748;
+            font-size: 1.1rem;
+        }
+        
+        .contact strong {
+            color: #22543d;
+        }
+        
+        .faq-item {
+            background: linear-gradient(135deg, #fffaf0, #fef5e7);
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 12px;
+            border-left: 5px solid #ed8936;
+        }
+        
+        .faq-item strong {
+            color: #c05621;
+        }
+        
+        .icon {
+            font-size: 2rem;
+            margin-right: 15px;
+            vertical-align: middle;
+        }
+        
+        .download-section {
+            background: linear-gradient(135deg, #e6fffa, #b2f5ea);
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 15px;
+            border-left: 5px solid #81e6d9;
+            text-align: center;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+        }
+        
+        .download-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .language-switch {
+                position: relative;
+                margin-bottom: 20px;
+            }
+            
+            .feature, .contact, .faq-item, .download-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="language-switch" onclick="toggleLanguage()">🇬🇧 English</button>
+            <h1>🎯 Taboo</h1>
+            <p class="subtitle" data-tr="Kelime Tahmin Oyunu" data-en="Word Guessing Game">Kelime Tahmin Oyunu</p>
+        </div>
+        
+        <div class="feature">
+            <h2 data-tr="🎮 Oyun Hakkında" data-en="🎮 About the Game">🎮 Oyun Hakkında</h2>
+            <p data-tr="Taboo, arkadaşlarınızla birlikte oynayabileceğiniz eğlenceli bir kelime tahmin oyunudur. Ana kelimeyi açıklarken yasaklı kelimeleri kullanamazsınız!" data-en="Taboo is a fun word guessing game you can play with your friends. You cannot use forbidden words while explaining the main word!">Taboo, arkadaşlarınızla birlikte oynayabileceğiniz eğlenceli bir kelime tahmin oyunudur. Ana kelimeyi açıklarken yasaklı kelimeleri kullanamazsınız!</p>
+            <p data-tr="Oyun, kelime haznenizi geliştirir ve arkadaşlarınızla eğlenceli vakit geçirmenizi sağlar." data-en="The game improves your vocabulary and provides fun times with your friends.">Oyun, kelime haznenizi geliştirir ve arkadaşlarınızla eğlenceli vakit geçirmenizi sağlar.</p>
+        </div>
+        
+        <div class="download-section">
+            <h2 data-tr="📱 Uygulamayı İndir" data-en="📱 Download the App">📱 Uygulamayı İndir</h2>
+            <p data-tr="Taboo oyununu App Store veya Google Play'den indirin ve hemen oynamaya başlayın!" data-en="Download Taboo from the App Store or Google Play and start playing immediately!">Taboo oyununu App Store veya Google Play'den indirin ve hemen oynamaya başlayın!</p>
+            <a href="https://apps.apple.com/us/app/taboo-game-offline-many-words/id6749801116" class="download-btn" data-tr="App Store'dan İndir" data-en="Download from App Store">App Store'dan İndir</a>
+            <a href="https://play.google.com/store/apps/details?id=com.sirius.tabu" class="download-btn" data-tr="Google Play'den İndir" data-en="Download from Google Play">Google Play'den İndir</a>
+        </div>
+        
+        <div class="contact">
+            <h2 data-tr="📞 Destek ve İletişim" data-en="📞 Support and Contact">📞 Destek ve İletişim</h2>
+            <p><strong data-tr="E-posta:" data-en="Email:">E-posta:</strong> whizkid.team.sirius@gmail.com</p>
+        </div>
+        
+        <div class="feature">
+            <h2 data-tr="❓ Sık Sorulan Sorular" data-en="❓ Frequently Asked Questions">❓ Sık Sorulan Sorular</h2>
+            
+            <div class="faq-item">
+                <p><strong data-tr="Q:" data-en="Q:">Q:</strong> <span data-tr="Uygulama neden açılmıyor?" data-en="Why doesn't the app open?">Uygulama neden açılmıyor?</span></p>
+                <p><strong data-tr="A:" data-en="A:">A:</strong> <span data-tr="iPhone'u yeniden başlatın ve uygulamayı App Store'dan yeniden indirin." data-en="Restart your iPhone and reinstall the app from the App Store.">iPhone'u yeniden başlatın ve uygulamayı App Store'dan yeniden indirin.</span></p>
+            </div>
+            
+            <div class="faq-item">
+                <p><strong data-tr="Q:" data-en="Q:">Q:</strong> <span data-tr="Oyun nasıl oynanır?" data-en="How do you play the game?">Oyun nasıl oynanır?</span></p>
+                <p><strong data-tr="A:" data-en="A:">A:</strong> <span data-tr="Ana kelimeyi açıklarken yasaklı kelimeleri kullanamazsınız. Takım arkadaşlarınız kelimeyi tahmin etmeye çalışır." data-en="You cannot use forbidden words while explaining the main word. Your teammates try to guess the word.">Ana kelimeyi açıklarken yasaklı kelimeleri kullanamazsınız. Takım arkadaşlarınız kelimeyi tahmin etmeye çalışır.</span></p>
+            </div>
+            
+            <div class="faq-item">
+                <p><strong data-tr="Q:" data-en="Q:">Q:</strong> <span data-tr="Uygulama hangi iOS sürümlerini destekliyor?" data-en="Which iOS versions does the app support?">Uygulama hangi iOS sürümlerini destekliyor?</span></p>
+                <p><strong data-tr="A:" data-en="A:">A:</strong> <span data-tr="iOS 17.6 ve üzeri sürümleri desteklemektedir." data-en="It supports iOS 17.6 and above.">iOS 17.6 ve üzeri sürümleri desteklemektedir.</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentLanguage = 'tr';
+        
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'tr' ? 'en' : 'tr';
+            updateLanguage();
+        }
+        
+        function updateLanguage() {
+            const elements = document.querySelectorAll('[data-tr][data-en]');
+            elements.forEach(element => {
+                element.textContent = element.getAttribute(`data-${currentLanguage}`);
+            });
+            
+            const button = document.querySelector('.language-switch');
+            if (currentLanguage === 'tr') {
+                button.textContent = '🇬🇧 English';
+                document.documentElement.lang = 'tr';
+            } else {
+                button.textContent = '🇹🇷 Türkçe';
+                document.documentElement.lang = 'en';
+            }
+        }
+    </script>
+</body>
+</html>
