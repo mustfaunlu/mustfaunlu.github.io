@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-tr="Finance Assistant - Kişisel Finans Koçu" data-en="Finance Assistant - Personal Finance Coach">Finance Assistant - Kişisel Finans Koçu</title>
+  <meta name="description" data-tr="Finance Assistant: Kişisel finans yönetimi, yatırım takibi, harcama analizi ve gerçek zamanlı piyasa verileri için hepsi bir arada uygulama." data-en="Finance Assistant: All-in-one app for personal finance management, investment tracking, expense analysis and real-time market data." content="Finance Assistant: Kişisel finans yönetimi, yatırım takibi, harcama analizi ve gerçek zamanlı piyasa verileri için hepsi bir arada uygulama." />
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:linear-gradient(135deg,#0f766e 0%,#0e7490 50%,#134e4a 100%); min-height:100vh; padding:24px; }
+    .container { max-width:960px; margin:0 auto; background:rgba(255,255,255,.95); backdrop-filter:blur(10px); padding:44px; border-radius:26px; box-shadow:0 20px 40px rgba(0,0,0,.15); }
+    .header { text-align:center; margin-bottom:42px; position:relative; }
+    .language-switch { position:absolute; top:0; right:0; background:linear-gradient(135deg,#0d9488,#0f766e); color:#fff; border:none; padding:11px 24px; border-radius:28px; cursor:pointer; font-size:14px; font-weight:600; letter-spacing:.3px; transition:transform .3s ease, box-shadow .3s ease; }
+    .language-switch:hover { transform:scale(1.06); box-shadow:0 6px 18px rgba(13,148,136,.35); }
+    h1 { font-size:3rem; margin-bottom:14px; background:linear-gradient(135deg,#0d9488,#065f46); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .subtitle { color:#475569; font-size:1.25rem; font-weight:400; }
+    .badges { display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:18px; }
+    .badge { background:#065f46; color:#fff; padding:8px 14px; border-radius:40px; font-size:.75rem; letter-spacing:.5px; font-weight:600; text-transform:uppercase; box-shadow:0 4px 10px rgba(6,95,70,.35); }
+    .section { background:linear-gradient(135deg,#f0fdfa,#ecfdf5); padding:34px; margin:34px 0; border-radius:20px; border-left:7px solid #0d9488; box-shadow:0 8px 24px rgba(0,0,0,.06); transition:transform .3s ease; }
+    .section:hover { transform:translateY(-6px); }
+    .section h2 { color:#064e3b; margin-bottom:22px; font-size:1.65rem; }
+    .section p, .section li { color:#0f3b34; line-height:1.56; }
+    ul { list-style:disc; margin-left:26px; margin-top:10px; }
+    .feature-grid { display:grid; gap:26px; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); margin-top:4px; }
+    .card { background:linear-gradient(135deg,#ffffff,#f1f5f9); padding:20px 22px; border-radius:18px; border:1px solid #e2e8f0; display:flex; flex-direction:column; gap:6px; }
+    .card h3 { margin:0 0 6px; font-size:1.05rem; color:#065f46; }
+    .download { background:linear-gradient(135deg,#ecfdf5,#d1fae5); padding:32px; text-align:center; border-radius:20px; border-left:7px solid #10b981; margin:42px 0; }
+    .download a { background:linear-gradient(135deg,#0d9488,#065f46); color:#fff; text-decoration:none; padding:15px 34px; border-radius:30px; font-weight:600; display:inline-block; margin:12px 10px; transition:transform .3s ease, box-shadow .3s ease; }
+    .download a:hover { transform:scale(1.06); box-shadow:0 6px 22px rgba(6,95,70,.45); }
+    .faq-item { background:linear-gradient(135deg,#fff7ed,#fffbeb); padding:22px; border-radius:16px; margin:20px 0; border-left:6px solid #fb923c; }
+    .faq-item strong { color:#c2410c; }
+    .contact { background:linear-gradient(135deg,#f0fdfa,#ccfbf1); padding:30px; border-radius:20px; border-left:7px solid #0d9488; margin:42px 0; }
+    @media (max-width:780px) { .container { padding:28px; } h1 { font-size:2.35rem; } .feature-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <button class="language-switch" onclick="toggleLanguage()">🇬🇧 English</button>
+      <h1>💹 Finance Assistant</h1>
+      <p class="subtitle" data-tr="Kişisel finansını akıllıca yönet" data-en="Manage your personal finances smartly">Kişisel finansını akıllıca yönet</p>
+      <div class="badges">
+        <div class="badge" data-tr="Yatırım" data-en="Investments">Yatırım</div>
+        <div class="badge" data-tr="Harcamalar" data-en="Expenses">Harcamalar</div>
+        <div class="badge" data-tr="Bütçe" data-en="Budget">Bütçe</div>
+        <div class="badge" data-tr="Canlı Veri" data-en="Real-Time Data">Canlı Veri</div>
+        <div class="badge" data-tr="Çoklu Para" data-en="Multi-Currency">Çoklu Para</div>
+        <div class="badge" data-tr="Güvenlik" data-en="Security">Güvenlik</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 data-tr="🚀 Uygulama Özeti" data-en="🚀 App Overview">🚀 Uygulama Özeti</h2>
+      <p data-tr="Finance Assistant; kişisel finansı yönetme, yatırımları takip etme, harcamaları izleme ve net varlık durumunu anlamak için hepsi bir arada çözüm sunar. Yeni başlayan veya deneyimli bir yatırımcı ol; düzenli kalmana, bilinçli kararlar almanıza ve finansal hedeflere ulaşmanıza yardımcı olur." data-en="Finance Assistant is your all-in-one solution for managing personal finances, tracking investments, monitoring expenses and understanding net worth. Whether you're a beginner or experienced investor, it helps you stay organized, make informed decisions and reach financial goals.">Finance Assistant; kişisel finansı yönetme, yatırımları takip etme, harcamaları izleme ve net varlık durumunu anlamak için hepsi bir arada çözüm sunar. Yeni başlayan veya deneyimli bir yatırımcı ol; düzenli kalmana, bilinçli kararlar almanıza ve finansal hedeflere ulaşmanıza yardımcı olur.</p>
+    </div>
+
+    <div class="section">
+      <h2 data-tr="🔑 Temel Özellikler" data-en="🔑 Key Features">🔑 Temel Özellikler</h2>
+      <div class="feature-grid">
+        <div class="card">
+          <h3 data-tr="Yatırım Takibi" data-en="Investment Tracking">Yatırım Takibi</h3>
+          <p data-tr="Gerçek zamanlı performans, geçmiş ve kategori bazlı analiz." data-en="Real-time performance, history and category-based analytics.">Gerçek zamanlı performans, geçmiş ve kategori bazlı analiz.</p>
+        </div>
+        <div class="card">
+          <h3 data-tr="Gider Yönetimi" data-en="Expense Management">Gider Yönetimi</h3>
+          <p data-tr="Günlük harcamaları kaydet, kategorilere ayır ve eğilimleri gör." data-en="Record daily expenses, categorize and view trends.">Günlük harcamaları kaydet, kategorilere ayır ve eğilimleri gör.</p>
+        </div>
+        <div class="card">
+          <h3 data-tr="Bütçe & Net Değer" data-en="Budget & Net Worth">Bütçe & Net Değer</h3>
+          <p data-tr="Aylık limitler belirle, varlık/borçları takip et, net değeri izle." data-en="Set monthly limits, track assets/liabilities, monitor net worth.">Aylık limitler belirle, varlık/borçları takip et, net değeri izle.</p>
+        </div>
+        <div class="card">
+          <h3 data-tr="Canlı Piyasa" data-en="Live Market">Canlı Piyasa</h3>
+          <p data-tr="Hisse, kripto ve altın fiyatları anlık güncellenir." data-en="Live updates for stocks, crypto and gold.">Hisse, kripto ve altın fiyatları anlık güncellenir.</p>
+        </div>
+        <div class="card">
+          <h3 data-tr="Çoklu Para Birimi" data-en="Multi-Currency">Çoklu Para Birimi</h3>
+          <p data-tr="TRY, USD, EUR otomatik dönüşüm ve portföy geneli uyum." data-en="TRY, USD, EUR automatic conversion and portfolio alignment.">TRY, USD, EUR otomatik dönüşüm ve portföy geneli uyum.</p>
+        </div>
+        <div class="card">
+          <h3 data-tr="Güvenlik" data-en="Security">Güvenlik</h3>
+          <p data-tr="Veriler güvenli saklanır, üçüncü taraflarla paylaşılmaz." data-en="Data stored securely and never shared with third parties.">Veriler güvenli saklanır, üçüncü taraflarla paylaşılmaz.</p>
+        </div>
+        <div class="card">
+          <h3 data-tr="Hatırlatıcılar" data-en="Reminders">Hatırlatıcılar</h3>
+          <p data-tr="Fatura ve hedef tarihleri için esnek bildirimler." data-en="Flexible notifications for bills and goal dates.">Fatura ve hedef tarihleri için esnek bildirimler.</p>
+        </div>
+        <div class="card">
+          <h3 data-tr="Özelleştirme" data-en="Customization">Özelleştirme</h3>
+          <p data-tr="Para birimi, dil ve tema tercihini seç." data-en="Choose currency, language and theme preferences.">Para birimi, dil ve tema tercihini seç.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 data-tr="🎯 Neden Finance Assistant?" data-en="🎯 Why Choose Finance Assistant?">🎯 Neden Finance Assistant?</h2>
+      <ul>
+        <li data-tr="Tüm finans verilerini tek yerde topla" data-en="Centralize all financial data">Tüm finans verilerini tek yerde topla</li>
+        <li data-tr="Harcamaları ve yatırımları analiz et" data-en="Analyze expenses and investments">Harcamaları ve yatırımları analiz et</li>
+        <li data-tr="Net değer ve trendleri gör" data-en="See net worth and trends">Net değer ve trendleri gör</li>
+        <li data-tr="Hedef belirle ve ilerlemeyi izle" data-en="Set goals and track progress">Hedef belirle ve ilerlemeyi izle</li>
+        <li data-tr="Gerçek zamanlı piyasa verisi ile güncel kal" data-en="Stay current with real-time market data">Gerçek zamanlı piyasa verisi ile güncel kal</li>
+        <li data-tr="Çoklu para birimi desteği ile global yönet" data-en="Manage globally with multi-currency support">Çoklu para birimi desteği ile global yönet</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2 data-tr="👥 Kimler İçin?" data-en="👥 Who Is It For?">👥 Kimler İçin?</h2>
+      <ul>
+        <li data-tr="Yatırım ve harcamalarını net görmek isteyen bireyler" data-en="Individuals wanting clarity on investments & spending">Yatırım ve harcamalarını net görmek isteyen bireyler</li>
+        <li data-tr="Öğrenciler, profesyoneller ve aileler" data-en="Students, professionals & families">Öğrenciler, profesyoneller ve aileler</li>
+        <li data-tr="Finansal okuryazarlığını artırmak isteyenler" data-en="Those improving financial literacy">Finansal okuryazarlığını artırmak isteyenler</li>
+        <li data-tr="Çoklu para birimi ile çalışan uluslararası kullanıcılar" data-en="International multi-currency users">Çoklu para birimi ile çalışan uluslararası kullanıcılar</li>
+        <li data-tr="Anlık portföy takibi isteyen yatırımcılar" data-en="Investors needing real-time portfolio tracking">Anlık portföy takibi isteyen yatırımcılar</li>
+      </ul>
+    </div>
+
+    <div class="download">
+      <h2 data-tr="📲 Uygulamayı İndir" data-en="📲 Download the App">📲 Uygulamayı İndir</h2>
+      <p data-tr="Finans yolculuğuna şimdi başla. Akıllı kararlar al ve hedeflerine yaklaş." data-en="Start your financial journey now. Make smarter decisions and reach your goals.">Finans yolculuğuna şimdi başla. Akıllı kararlar al ve hedeflerine yaklaş.</p>
+      <a href="https://play.google.com/store/apps/details?id=com.sirius.finance" data-tr="Google Play'den İndir" data-en="Download on Google Play">Google Play'den İndir</a>
+      <a href="#" data-tr="App Store (Çok Yakında)" data-en="App Store (Coming Soon)">App Store (Çok Yakında)</a>
+    </div>
+
+    <div class="section">
+      <h2 data-tr="❓ Sık Sorulan Sorular" data-en="❓ Frequently Asked Questions">❓ Sık Sorulan Sorular</h2>
+      <div class="faq-item">
+        <p><strong data-tr="S:" data-en="Q:">S:</strong> <span data-tr="Verilerim güvende mi?" data-en="Is my data safe?">Verilerim güvende mi?</span></p>
+        <p><strong data-tr="C:" data-en="A:">C:</strong> <span data-tr="Veriler güvenli olarak saklanır ve üçüncü taraflarla paylaşılmaz." data-en="Data is stored securely and never shared with third parties.">Veriler güvenli olarak saklanır ve üçüncü taraflarla paylaşılmaz.</span></p>
+      </div>
+      <div class="faq-item">
+        <p><strong data-tr="S:" data-en="Q:">S:</strong> <span data-tr="Piyasa fiyatları ne sıklıkla güncellenir?" data-en="How often are market prices updated?">Piyasa fiyatları ne sıklıkla güncellenir?</span></p>
+        <p><strong data-tr="C:" data-en="A:">C:</strong> <span data-tr="Hisse, kripto ve emtia verileri dakikalar içinde otomatik yenilenir." data-en="Stock, crypto and commodity data refresh automatically within minutes.">Hisse, kripto ve emtia verileri dakikalar içinde otomatik yenilenir.</span></p>
+      </div>
+      <div class="faq-item">
+        <p><strong data-tr="S:" data-en="Q:">S:</strong> <span data-tr="Hatırlatıcıları nasıl ayarlarım?" data-en="How do I set reminders?">Hatırlatıcıları nasıl ayarlarım?</span></p>
+        <p><strong data-tr="C:" data-en="A:">C:</strong> <span data-tr="Ayarlar bölümünden fatura ve hedef tarihlerini ekleyebilirsin." data-en="Add bill and goal dates from the settings section.">Ayarlar bölümünden fatura ve hedef tarihlerini ekleyebilirsin.</span></p>
+      </div>
+    </div>
+
+    <div class="contact">
+      <h2 data-tr="📧 İletişim ve Geri Bildirim" data-en="📧 Contact & Feedback">📧 İletişim ve Geri Bildirim</h2>
+      <p><strong data-tr="E-posta:" data-en="Email:">E-posta:</strong> whizkid.team.sirius@gmail.com</p>
+      <p data-tr="Önerilerin bizim için değerli. Lütfen paylaş." data-en="Your suggestions matter. Please share.">Önerilerin bizim için değerli. Lütfen paylaş.</p>
+    </div>
+  </div>
+
+  <script>
+    let currentLanguage = 'tr';
+    function updateLanguage() {
+      document.querySelectorAll('[data-tr][data-en]').forEach(el => {
+        const value = el.getAttribute(`data-${currentLanguage}`);
+        if (value) el.textContent = value;
+      });
+      const btn = document.querySelector('.language-switch');
+      const html = document.documentElement;
+      const titleEl = document.querySelector('title');
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (currentLanguage === 'tr') {
+        btn.textContent = '🇬🇧 English';
+        html.lang = 'tr';
+        titleEl.textContent = titleEl.getAttribute('data-tr');
+        if (metaDesc) metaDesc.content = metaDesc.getAttribute('data-tr');
+      } else {
+        btn.textContent = '🇹🇷 Türkçe';
+        html.lang = 'en';
+        titleEl.textContent = titleEl.getAttribute('data-en');
+        if (metaDesc) metaDesc.content = metaDesc.getAttribute('data-en');
+      }
+    }
+    function toggleLanguage() { currentLanguage = currentLanguage === 'tr' ? 'en' : 'tr'; updateLanguage(); }
+  </script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+google.com, pub-3078250956434821, DIRECT, f08c47fec0942fa0
+# package: com.sirius.finance
+
+
