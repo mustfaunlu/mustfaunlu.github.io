@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-tr="AAC - Hesap ve Veri Silme Talepleri" data-en="AAC - Account and Data Deletion Requests">AAC - Hesap ve Veri Silme Talepleri</title>
+  <meta name="description" data-tr="AAC uygulaması için hesap silme ve veri silme taleplerini iletebileceğiniz resmi sayfa." data-en="Official page for AAC app account deletion and data deletion requests." content="AAC uygulaması için hesap silme ve veri silme taleplerini iletebileceğiniz resmi sayfa." />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 55%, #22c55e 100%);
+      min-height: 100vh;
+      padding: 24px;
+    }
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(10px);
+      padding: 42px;
+      border-radius: 28px;
+      box-shadow: 0 24px 50px rgba(15, 23, 42, 0.25);
+    }
+    .header { text-align: center; margin-bottom: 36px; position: relative; }
+    .language-switch {
+      position: absolute; top: 0; right: 0;
+      background: linear-gradient(135deg, #1d4ed8, #16a34a);
+      color: white; border: none; padding: 11px 22px; border-radius: 28px;
+      cursor: pointer; font-size: 14px; font-weight: 600;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .language-switch:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(29, 78, 216, .25); }
+    h1 {
+      font-size: 3rem; margin-bottom: 12px;
+      background: linear-gradient(135deg, #1d4ed8, #16a34a);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .subtitle { color: #475569; font-size: 1.2rem; }
+    .badge-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+    .badge {
+      background: #eff6ff; color: #1e3a8a; border: 1px solid #bfdbfe;
+      padding: 9px 14px; border-radius: 999px; font-size: .82rem; font-weight: 700;
+      letter-spacing: .2px;
+    }
+    .section {
+      background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+      padding: 30px; margin: 28px 0; border-radius: 20px;
+      border-left: 6px solid #2563eb; box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .section h2 { color: #0f172a; margin-bottom: 16px; font-size: 1.5rem; }
+    .section p, .section li, .section label, .section small { color: #334155; line-height: 1.65; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; }
+    .card {
+      background: white; border: 1px solid #e2e8f0; border-radius: 18px; padding: 22px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.5);
+    }
+    .card h3 { color: #1d4ed8; margin-bottom: 10px; }
+    .highlight {
+      background: linear-gradient(135deg, #ecfeff, #f0fdf4);
+      border-left-color: #16a34a;
+    }
+    .steps { margin-left: 22px; margin-top: 10px; }
+    .forms { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+    .form-card {
+      background: linear-gradient(135deg, #ffffff, #f8fafc);
+      border: 1px solid #dbeafe; border-radius: 22px; padding: 26px;
+      box-shadow: 0 14px 28px rgba(37, 99, 235, .08);
+    }
+    .form-card h3 { color: #0f172a; margin-bottom: 8px; font-size: 1.25rem; }
+    .form-card p { margin-bottom: 16px; }
+    form { display: grid; gap: 14px; }
+    label { font-weight: 600; display: block; margin-bottom: 6px; }
+    input, textarea, select {
+      width: 100%; padding: 13px 14px; border-radius: 14px; border: 1px solid #cbd5e1;
+      font: inherit; background: #fff; color: #0f172a;
+    }
+    textarea { min-height: 120px; resize: vertical; }
+    .hint { font-size: .92rem; color: #64748b; margin-top: -4px; }
+    .submit-btn {
+      background: linear-gradient(135deg, #1d4ed8, #16a34a); color: #fff; border: none;
+      padding: 14px 18px; border-radius: 16px; font-size: 1rem; font-weight: 700; cursor: pointer;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(29,78,216,.22); }
+    .status {
+      display: none; margin-top: 12px; padding: 12px 14px; border-radius: 14px; font-size: .95rem;
+    }
+    .status.success { display: block; background: #ecfdf5; color: #166534; border: 1px solid #86efac; }
+    .status.error { display: block; background: #fef2f2; color: #991b1b; border: 1px solid #fca5a5; }
+    .contact {
+      background: linear-gradient(135deg, #eff6ff, #dcfce7);
+      padding: 28px; border-radius: 20px; border-left: 6px solid #16a34a;
+    }
+    a { color: #1d4ed8; }
+    @media (max-width: 768px) {
+      .container { padding: 24px; }
+      h1 { font-size: 2.25rem; }
+      .language-switch { position: relative; margin-bottom: 18px; }
+      .section, .form-card, .contact { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <button class="language-switch" onclick="toggleLanguage()">🇬🇧 English</button>
+      <h1>🗂️ AAC</h1>
+      <p class="subtitle" data-tr="AAC uygulaması için hesap silme ve veri silme taleplerini buradan iletebilirsiniz." data-en="Use this page to submit account deletion and data deletion requests for the AAC app.">AAC uygulaması için hesap silme ve veri silme taleplerini buradan iletebilirsiniz.</p>
+      <div class="badge-row">
+        <span class="badge" data-tr="Resmi Destek Sayfası" data-en="Official Support Page">Resmi Destek Sayfası</span>
+        <span class="badge" data-tr="Google Play Uyumlu" data-en="Google Play Ready">Google Play Uyumlu</span>
+        <span class="badge" data-tr="İki Ayrı Talep Formu" data-en="Two Separate Request Forms">İki Ayrı Talep Formu</span>
+      </div>
+    </div>
+
+    <div class="section highlight">
+      <h2 data-tr="AAC geliştirici bilgisi" data-en="AAC developer information">AAC geliştirici bilgisi</h2>
+      <p data-tr="Bu sayfa, mağaza kaydında görünen geliştirici adına bağlı AAC uygulaması için hazırlanmıştır. Kullanıcılar bu sayfa üzerinden hesaplarının ve ilişkili verilerinin silinmesini ya da hesaplarını silmeden belirli verilerinin kaldırılmasını talep edebilir." data-en="This page is provided for the AAC app under the developer identity shown on the store listing. Users can request deletion of their account and associated data, or request deletion of certain data without deleting their account.">Bu sayfa, mağaza kaydında görünen geliştirici adına bağlı AAC uygulaması için hazırlanmıştır. Kullanıcılar bu sayfa üzerinden hesaplarının ve ilişkili verilerinin silinmesini ya da hesaplarını silmeden belirli verilerinin kaldırılmasını talep edebilir.</p>
+    </div>
+
+    <div class="section">
+      <h2 data-tr="📋 Talep adımları" data-en="📋 Request steps">📋 Talep adımları</h2>
+      <ol class="steps">
+        <li data-tr="Aşağıdaki iki formdan uygun olanı seçin." data-en="Choose the appropriate form below.">Aşağıdaki iki formdan uygun olanı seçin.</li>
+        <li data-tr="AAC hesabınızla ilişkili e-posta adresinizi girin." data-en="Enter the email address associated with your AAC account.">AAC hesabınızla ilişkili e-posta adresinizi girin.</li>
+        <li data-tr="İsterseniz ek açıklama alanına detay ekleyin ve formu gönderin." data-en="Optionally add details in the message field and submit the form.">İsterseniz ek açıklama alanına detay ekleyin ve formu gönderin.</li>
+        <li data-tr="Talebiniz information.sirius@gmail.com adresine iletilir ve değerlendirme için kayıt altına alınır." data-en="Your request is sent to information.sirius@gmail.com and logged for review.">Talebiniz information.sirius@gmail.com adresine iletilir ve değerlendirme için kayıt altına alınır.</li>
+        <li data-tr="Gerekirse kimlik doğrulama için sizinle e-posta üzerinden iletişime geçilebilir." data-en="If needed, you may be contacted by email for identity verification.">Gerekirse kimlik doğrulama için sizinle e-posta üzerinden iletişime geçilebilir.</li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h2 data-tr="🧾 Silinen ve saklanabilen veri türleri" data-en="🧾 Data types deleted and retained">🧾 Silinen ve saklanabilen veri türleri</h2>
+      <div class="grid">
+        <div class="card">
+          <h3 data-tr="Hesap silme talebinde" data-en="For account deletion requests">Hesap silme talebinde</h3>
+          <p data-tr="Hesap profil bilgileri, uygulama içi kullanıcı ilişkili kayıtlar ve talebe bağlı kullanıcı verileri silinmek üzere işleme alınır." data-en="Account profile information, user-linked app records, and request-related user data are processed for deletion.">Hesap profil bilgileri, uygulama içi kullanıcı ilişkili kayıtlar ve talebe bağlı kullanıcı verileri silinmek üzere işleme alınır.</p>
+        </div>
+        <div class="card">
+          <h3 data-tr="Veri silme talebinde" data-en="For data deletion requests">Veri silme talebinde</h3>
+          <p data-tr="Hesap kapatılmadan, talepte belirtilen belirli veri kategorileri incelenir ve uygun olanlar silinmek üzere işleme alınır." data-en="Without closing the account, the specific data categories described in the request are reviewed and eligible data is processed for deletion.">Hesap kapatılmadan, talepte belirtilen belirli veri kategorileri incelenir ve uygun olanlar silinmek üzere işleme alınır.</p>
+        </div>
+        <div class="card">
+          <h3 data-tr="Saklama / ek süre" data-en="Retention / additional period">Saklama / ek süre</h3>
+          <p data-tr="Yasal yükümlülükler, dolandırıcılığı önleme, güvenlik, uyuşmazlık çözümü veya kayıt tutma amacıyla gerekli olan sınırlı veriler daha uzun süre tutulabilir. Talep işleme kayıtları makul bir idari ve yasal saklama süresi boyunca korunabilir." data-en="Limited data may be retained longer where required for legal obligations, fraud prevention, security, dispute resolution, or record-keeping. Request processing records may be kept for a reasonable administrative and legal retention period.">Yasal yükümlülükler, dolandırıcılığı önleme, güvenlik, uyuşmazlık çözümü veya kayıt tutma amacıyla gerekli olan sınırlı veriler daha uzun süre tutulabilir. Talep işleme kayıtları makul bir idari ve yasal saklama süresi boyunca korunabilir.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 data-tr="✉️ Talep formları" data-en="✉️ Request forms">✉️ Talep formları</h2>
+      <div class="forms">
+        <div class="form-card">
+          <h3 data-tr="Hesap silme talebi" data-en="Account deletion request">Hesap silme talebi</h3>
+          <p data-tr="AAC hesabınızı ve bu hesapla ilişkili verilerin silinmesini istemek için bu formu kullanın." data-en="Use this form to request deletion of your AAC account and associated data.">AAC hesabınızı ve bu hesapla ilişkili verilerin silinmesini istemek için bu formu kullanın.</p>
+          <form id="accountDeletionForm">
+            <div>
+              <label for="accountEmail" data-tr="E-posta adresi" data-en="Email address">E-posta adresi</label>
+              <input id="accountEmail" name="email" type="email" required placeholder="name@example.com" />
+            </div>
+            <div>
+              <label for="accountReason" data-tr="Talep türü" data-en="Request type">Talep türü</label>
+              <select id="accountReason" name="requestType">
+                <option value="account_delete" data-tr="Hesabımı ve ilişkili verileri sil" data-en="Delete my account and associated data">Hesabımı ve ilişkili verileri sil</option>
+              </select>
+            </div>
+            <div>
+              <label for="accountMessage" data-tr="Ek açıklama (isteğe bağlı)" data-en="Additional details (optional)">Ek açıklama (isteğe bağlı)</label>
+              <textarea id="accountMessage" name="message" data-tr-placeholder="Örn: Hesabıma artık ihtiyacım yok. Silme süreci hakkında e-posta ile bilgilendirme rica ederim." data-en-placeholder="Example: I no longer need my account. Please notify me by email about the deletion process." placeholder="Örn: Hesabıma artık ihtiyacım yok. Silme süreci hakkında e-posta ile bilgilendirme rica ederim."></textarea>
+            </div>
+            <p class="hint" data-tr="Form gönderildiğinde varsayılan e-posta uygulamanız açılır ve talebiniz information.sirius@gmail.com adresine hazırlanır." data-en="When you submit, your default email app opens with a prefilled request to information.sirius@gmail.com.">Form gönderildiğinde varsayılan e-posta uygulamanız açılır ve talebiniz information.sirius@gmail.com adresine hazırlanır.</p>
+            <button type="submit" class="submit-btn" data-tr="Hesap silme talebi oluştur" data-en="Create account deletion request">Hesap silme talebi oluştur</button>
+          </form>
+          <div id="accountStatus" class="status"></div>
+        </div>
+
+        <div class="form-card">
+          <h3 data-tr="Veri silme talebi" data-en="Data deletion request">Veri silme talebi</h3>
+          <p data-tr="AAC hesabınızı kapatmadan belirli verilerinizin silinmesini talep etmek için bu formu kullanın." data-en="Use this form to request deletion of specific data without closing your AAC account.">AAC hesabınızı kapatmadan belirli verilerinizin silinmesini talep etmek için bu formu kullanın.</p>
+          <form id="dataDeletionForm">
+            <div>
+              <label for="dataEmail" data-tr="E-posta adresi" data-en="Email address">E-posta adresi</label>
+              <input id="dataEmail" name="email" type="email" required placeholder="name@example.com" />
+            </div>
+            <div>
+              <label for="dataScope" data-tr="Silinmesini istediğiniz veri türü" data-en="Data you want deleted">Silinmesini istediğiniz veri türü</label>
+              <select id="dataScope" name="scope">
+                <option value="selected_data" data-tr="Belirli veriler" data-en="Specific data">Belirli veriler</option>
+                <option value="usage_data" data-tr="Kullanım / etkinlik verileri" data-en="Usage / activity data">Kullanım / etkinlik verileri</option>
+                <option value="profile_data" data-tr="Profil verileri" data-en="Profile data">Profil verileri</option>
+                <option value="other" data-tr="Diğer" data-en="Other">Diğer</option>
+              </select>
+            </div>
+            <div>
+              <label for="dataMessage" data-tr="Açıklama" data-en="Details">Açıklama</label>
+              <textarea id="dataMessage" name="message" required data-tr-placeholder="Hangi verilerin silinmesini istediğinizi mümkün olduğunca açık yazın." data-en-placeholder="Please describe as clearly as possible which data you want deleted." placeholder="Hangi verilerin silinmesini istediğinizi mümkün olduğunca açık yazın."></textarea>
+            </div>
+            <p class="hint" data-tr="Talebiniz e-posta taslağı olarak information.sirius@gmail.com adresine hazırlanır." data-en="Your request is prepared as an email draft addressed to information.sirius@gmail.com.">Talebiniz e-posta taslağı olarak information.sirius@gmail.com adresine hazırlanır.</p>
+            <button type="submit" class="submit-btn" data-tr="Veri silme talebi oluştur" data-en="Create data deletion request">Veri silme talebi oluştur</button>
+          </form>
+          <div id="dataStatus" class="status"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact">
+      <h2 data-tr="📬 İletişim" data-en="📬 Contact">📬 İletişim</h2>
+      <p data-tr="Destek ve gizlilik talepleri için:" data-en="For support and privacy requests:">Destek ve gizlilik talepleri için:</p>
+      <p><strong>Email:</strong> information.sirius@gmail.com</p>
+      <p data-tr="Bu sayfayı Google Play Store hesap silme / veri silme bağlantısı olarak kullanabilirsiniz." data-en="You can use this page as the Google Play Store account deletion / data deletion link.">Bu sayfayı Google Play Store hesap silme / veri silme bağlantısı olarak kullanabilirsiniz.</p>
+    </div>
+  </div>
+
+  <script>
+    let currentLanguage = 'tr';
+
+    function updateLanguage() {
+      document.querySelectorAll('[data-tr][data-en]').forEach(el => {
+        const value = el.getAttribute(`data-${currentLanguage}`);
+        if (!value) return;
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          return;
+        }
+        el.textContent = value;
+      });
+
+      document.querySelectorAll('textarea[data-tr-placeholder][data-en-placeholder]').forEach(el => {
+        el.placeholder = el.getAttribute(`data-${currentLanguage}-placeholder`);
+      });
+
+      document.querySelectorAll('option[data-tr][data-en]').forEach(el => {
+        el.textContent = el.getAttribute(`data-${currentLanguage}`);
+      });
+
+      const btn = document.querySelector('.language-switch');
+      const html = document.documentElement;
+      const titleEl = document.querySelector('title');
+      const metaDesc = document.querySelector('meta[name="description"]');
+
+      if (currentLanguage === 'tr') {
+        btn.textContent = '🇬🇧 English';
+        html.lang = 'tr';
+        titleEl.textContent = titleEl.getAttribute('data-tr');
+        if (metaDesc) metaDesc.content = metaDesc.getAttribute('data-tr');
+      } else {
+        btn.textContent = '🇹🇷 Türkçe';
+        html.lang = 'en';
+        titleEl.textContent = titleEl.getAttribute('data-en');
+        if (metaDesc) metaDesc.content = metaDesc.getAttribute('data-en');
+      }
+    }
+
+    function toggleLanguage() {
+      currentLanguage = currentLanguage === 'tr' ? 'en' : 'tr';
+      updateLanguage();
+    }
+
+    function showStatus(targetId, type, trMessage, enMessage) {
+      const box = document.getElementById(targetId);
+      box.className = `status ${type}`;
+      box.textContent = currentLanguage === 'tr' ? trMessage : enMessage;
+    }
+
+    function buildMailto(subject, body) {
+      return `mailto:information.sirius@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+
+    document.getElementById('accountDeletionForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const email = document.getElementById('accountEmail').value.trim();
+      const message = document.getElementById('accountMessage').value.trim();
+
+      if (!email) {
+        showStatus('accountStatus', 'error', 'Lütfen geçerli bir e-posta adresi girin.', 'Please enter a valid email address.');
+        return;
+      }
+
+      const subject = 'AAC Account Deletion Request';
+      const body = [
+        'Request Type: Account Deletion',
+        `Email Address: ${email}`,
+        '',
+        'User Message:',
+        message || '-',
+        '',
+        'Please process the deletion of my AAC account and associated data.'
+      ].join('\n');
+
+      window.location.href = buildMailto(subject, body);
+      showStatus('accountStatus', 'success', 'E-posta taslağı hazırlandı. Eğer e-posta uygulamanız açılmadıysa information.sirius@gmail.com adresine aynı bilgilerle manuel olarak da gönderebilirsiniz.', 'Your email draft is ready. If your email app did not open, you can manually send the same information to information.sirius@gmail.com.');
+    });
+
+    document.getElementById('dataDeletionForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const email = document.getElementById('dataEmail').value.trim();
+      const scope = document.getElementById('dataScope');
+      const scopeLabel = scope.options[scope.selectedIndex].text;
+      const message = document.getElementById('dataMessage').value.trim();
+
+      if (!email || !message) {
+        showStatus('dataStatus', 'error', 'Lütfen e-posta adresinizi ve açıklama alanını doldurun.', 'Please fill in your email address and the details field.');
+        return;
+      }
+
+      const subject = 'AAC Data Deletion Request';
+      const body = [
+        'Request Type: Data Deletion',
+        `Email Address: ${email}`,
+        `Data Scope: ${scopeLabel}`,
+        '',
+        'Requested Details:',
+        message,
+        '',
+        'Please review and process this AAC data deletion request.'
+      ].join('\n');
+
+      window.location.href = buildMailto(subject, body);
+      showStatus('dataStatus', 'success', 'E-posta taslağı hazırlandı. Eğer e-posta uygulamanız açılmadıysa information.sirius@gmail.com adresine aynı bilgilerle manuel olarak da gönderebilirsiniz.', 'Your email draft is ready. If your email app did not open, you can manually send the same information to information.sirius@gmail.com.');
+    });
+
+    updateLanguage();
+  </script>
+</body>
+</html>
